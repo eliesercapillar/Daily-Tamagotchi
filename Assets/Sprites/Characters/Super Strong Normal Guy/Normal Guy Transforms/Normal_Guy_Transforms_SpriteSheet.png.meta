@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,574 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7c9a6aa06239547b8ac676fbe8e199
+      internalID: -670182322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 125
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12abdac7cec7404f88b26871bf1f677
+      internalID: 438888058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 125
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7401d2578f3e66244ac66a3ff3d6b9fb
+      internalID: -356318984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 125
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669120361f91b314e8cd50a589a5bf59
+      internalID: -813489759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 125
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8398a03b0837a40910d02d4a2847d2
+      internalID: -663540402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e3a09625f9d4c347ba68e20d164d0bc
+      internalID: -91136775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 100
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00845a2019acfb64a9c98951f258f4e4
+      internalID: 830241076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 100
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f697f06a6b8a5543a9ef69062b1419e
+      internalID: -1397272191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 100
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a79c89a8514d5be4cb743c7d4b37eb4f
+      internalID: -1090269649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 100
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d38b95835b794542aeff376833a476f
+      internalID: 1327653756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 75
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f325fe8dd9631164695d972a7667588a
+      internalID: -1012945753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 75
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4563434e4734acf4f8d2f87133ca47fc
+      internalID: 1050090304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 75
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cd9d023439862140a574cb9b2c77c78
+      internalID: 2058201055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 75
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea65cb918230b44c8f199372ad85eeb
+      internalID: -809054591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 75
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d044ca2df36bb984a81e005076e84f3c
+      internalID: -2002750237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d8a851133f7b14ba8e738bf8be10e7
+      internalID: 1931899631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 50
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0720917c1418c8e4d90cad1b9f525d32
+      internalID: -221004455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 50
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a297bb6ff04b57b48afdc9468787cb81
+      internalID: -349438443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 50
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2040698d13477b43a578b1ec1abebfc
+      internalID: 872451613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 50
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a62dcbfd5de33489e70166beda64f6
+      internalID: 433870067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5227e54fac072148a668ae737b215da
+      internalID: 773327053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 25
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732c0b9aeb231384da34adf6592f7946
+      internalID: 500312889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 25
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c924e249ebd604ea12e3688e6c9bf1
+      internalID: 453197014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 25
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c098b704ee66d44892a199d9954b08
+      internalID: -802784697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 25
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3333782e3f87f04a92ad986920b3cc3
+      internalID: -239543746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf0da9f48b30a2499be2337addf3086
+      internalID: 1488041575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Normal_Guy_Transforms_SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 0
+        width: 29
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8178cfe8b0712b4dad1ce29f39bd5b8
+      internalID: 360846688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +699,34 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Normal_Guy_Transforms_SpriteSheet_0: -670182322
+      Normal_Guy_Transforms_SpriteSheet_1: 438888058
+      Normal_Guy_Transforms_SpriteSheet_10: -1012945753
+      Normal_Guy_Transforms_SpriteSheet_11: 1050090304
+      Normal_Guy_Transforms_SpriteSheet_12: 2058201055
+      Normal_Guy_Transforms_SpriteSheet_13: -809054591
+      Normal_Guy_Transforms_SpriteSheet_14: -2002750237
+      Normal_Guy_Transforms_SpriteSheet_15: 1931899631
+      Normal_Guy_Transforms_SpriteSheet_16: -221004455
+      Normal_Guy_Transforms_SpriteSheet_17: -349438443
+      Normal_Guy_Transforms_SpriteSheet_18: 872451613
+      Normal_Guy_Transforms_SpriteSheet_19: 433870067
+      Normal_Guy_Transforms_SpriteSheet_2: -356318984
+      Normal_Guy_Transforms_SpriteSheet_20: 773327053
+      Normal_Guy_Transforms_SpriteSheet_21: 500312889
+      Normal_Guy_Transforms_SpriteSheet_22: 453197014
+      Normal_Guy_Transforms_SpriteSheet_23: -802784697
+      Normal_Guy_Transforms_SpriteSheet_24: -239543746
+      Normal_Guy_Transforms_SpriteSheet_25: 1488041575
+      Normal_Guy_Transforms_SpriteSheet_26: 360846688
+      Normal_Guy_Transforms_SpriteSheet_3: -813489759
+      Normal_Guy_Transforms_SpriteSheet_4: -663540402
+      Normal_Guy_Transforms_SpriteSheet_5: -91136775
+      Normal_Guy_Transforms_SpriteSheet_6: 830241076
+      Normal_Guy_Transforms_SpriteSheet_7: -1397272191
+      Normal_Guy_Transforms_SpriteSheet_8: -1090269649
+      Normal_Guy_Transforms_SpriteSheet_9: 1327653756
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

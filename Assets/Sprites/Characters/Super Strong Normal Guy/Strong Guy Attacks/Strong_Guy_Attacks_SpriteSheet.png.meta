@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4337a5fa6eace3b459119acf302aaf72
+      internalID: 494142720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 96
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61b7c71c33b7ad4294780d465d50ed8
+      internalID: 1297324891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 96
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d93972f53d667141998c05b3f42bbfb
+      internalID: 1056423602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 96
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c109adb321b9a24d96327c9cef9a048
+      internalID: -1937838227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c76d3d89c708142853a9c67943e428
+      internalID: -1831851375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 72
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd4af7cf6ec8dd469a3ec8f5e904616
+      internalID: -680334495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 72
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655292d70449bbe4198569b24f953ed5
+      internalID: -1843389857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 72
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d08b0eda5bf93e48b58acb444c6d4dd
+      internalID: 2021128162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7e0035888cd034ab362b801eecc067
+      internalID: 782684978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 48
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8627544042cbb9f42b1e8146a9388eb8
+      internalID: 558994924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 48
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 361475dcd0f2cf0449c4a0c2d6dda59c
+      internalID: -367403277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 48
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a2460ca5d9324649be1f207f67df723
+      internalID: -484470979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3584de0eac1e284dbf7753235aca5c8
+      internalID: -761104120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 24
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65871093845f058499d9f7e4d10480b2
+      internalID: -1365337018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 24
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c3682229821420449d171e3227cfe1c
+      internalID: -1977689362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 24
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cfcabaf695df3648b1a0acf8821ecdd
+      internalID: -857694903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strong_Guy_Attacks_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5344828, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f722a3461f743c4890a54e66bd37485
+      internalID: -1174256110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +489,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Strong_Guy_Attacks_SpriteSheet_0: 494142720
+      Strong_Guy_Attacks_SpriteSheet_1: 1297324891
+      Strong_Guy_Attacks_SpriteSheet_10: -367403277
+      Strong_Guy_Attacks_SpriteSheet_11: -484470979
+      Strong_Guy_Attacks_SpriteSheet_12: -761104120
+      Strong_Guy_Attacks_SpriteSheet_13: -1365337018
+      Strong_Guy_Attacks_SpriteSheet_14: -1977689362
+      Strong_Guy_Attacks_SpriteSheet_15: -857694903
+      Strong_Guy_Attacks_SpriteSheet_16: -1174256110
+      Strong_Guy_Attacks_SpriteSheet_2: 1056423602
+      Strong_Guy_Attacks_SpriteSheet_3: -1937838227
+      Strong_Guy_Attacks_SpriteSheet_4: -1831851375
+      Strong_Guy_Attacks_SpriteSheet_5: -680334495
+      Strong_Guy_Attacks_SpriteSheet_6: -1843389857
+      Strong_Guy_Attacks_SpriteSheet_7: 2021128162
+      Strong_Guy_Attacks_SpriteSheet_8: 782684978
+      Strong_Guy_Attacks_SpriteSheet_9: 558994924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
