@@ -5,12 +5,19 @@ using UnityEngine;
 
 namespace Player
 {
+    public enum Transformation
+    {
+        Normal,
+        Strong,
+        Gigachad
+    }
+
     public class Script_PlayerActions : MonoBehaviour
     {
         #region Global Variables
 
-        [Space(5)]
-        [Header("Player Components")]
+        [Header("Managers")]
+        [SerializeField] Script_PlayerLocomotion _locomotionManager;
 
         [Space(5)]
         [Header("Action Properties")]
@@ -21,12 +28,6 @@ namespace Player
         private float _rageMeter = 0.0f;
 
         // State Flags
-        private enum Transformation
-        {
-            Normal,
-            Strong,
-            Gigachad
-        }
         private Transformation _currentState;
 
         private bool _hasTransformationStarted;
@@ -36,9 +37,10 @@ namespace Player
 
         // Setters/Getters
         public bool HasTransformationStarted { get { return _hasTransformationStarted; } }
-        public bool IsEnraged                { get { return _isEnraged; } }
-        public bool IsTransforming           { get { return _isTransforming; } }
-        public bool IsTransformed            { get { return _isTransformed; } }
+        public bool IsEnraged                { get { return _isEnraged;                } }
+        public bool IsTransforming           { get { return _isTransforming;           } }
+        public bool IsTransformed            { get { return _isTransformed;            } }
+        public Transformation CurrentState   { get { return _currentState;             } }
 
         #endregion Global Variables
 
@@ -60,17 +62,23 @@ namespace Player
         private void HandleInputs()
         {
             _hasTransformationStarted = Input.GetKeyDown(KeyCode.F);
+            if (Input.GetKeyDown(KeyCode.Space)) { HandleAttack(); }
+        }
+
+        private void HandleAttack()
+        {
+
         }
 
         private void HandleRage()
         {
             if (_isEnraged)
             {
-                if (_rageMeter <= 0.0f)   _isEnraged = false;
+                if (_rageMeter <= 0.0f)   { _isEnraged = false; }
             }
             else
             {
-                if (_rageMeter >= 100.0f) _isEnraged = true;
+                if (_rageMeter >= 100.0f) { _isEnraged = true;  }
             }
         }
 
@@ -101,6 +109,7 @@ namespace Player
             UpdateCurrentState();
         }
 
+        // Called from the Animator after revert transformation has finished.
         public void OnRevertTransformationEndEvent()
         {
             _isTransformed = false;
@@ -113,13 +122,12 @@ namespace Player
         {
             if (_isTransformed)
             {
-                if (_isEnraged) _currentState = Transformation.Gigachad;
-                else            _currentState = Transformation.Strong;
+                if (_isEnraged) { _currentState = Transformation.Gigachad; }
+                else            { _currentState = Transformation.Strong;   }
             }
-            else
-            {
-                _currentState = Transformation.Normal;
-            }
+            else                { _currentState = Transformation.Normal; }
+
+            _locomotionManager.UpdateMovementSpeed(_currentState);
         }
     }
 }

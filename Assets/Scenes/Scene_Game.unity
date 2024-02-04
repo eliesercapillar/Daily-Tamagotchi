@@ -5350,8 +5350,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 1417403754}
-  _playerRB: {fileID: 0}
-  _movementSpeed: 3
+  _playerRB: {fileID: 1417403751}
+  _movementSpeedNormal: 0
+  _movementSpeedStrong: 0
+  _movementSpeedGiga: 0
 --- !u!50 &1417403751
 Rigidbody2D:
   serializedVersion: 4
@@ -5414,9 +5416,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _locomotionManager: {fileID: 1417403750}
   _actionsManager: {fileID: 1417403754}
-  _playerAnimator: {fileID: 0}
-  _coffeeWaitTimeMin: 0
-  _coffeeWaitTimeMax: 0
+  _playerAnimator: {fileID: 1417403752}
+  _coffeeWaitTimeMin: 5
+  _coffeeWaitTimeMax: 10
 --- !u!114 &1417403754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5429,6 +5431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8332ee9e5f555cf41b94760c28d30aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _locomotionManager: {fileID: 0}
   _rageIncrementAmount: 0
   _rageDecrementAmount: 0
 --- !u!1 &2018929786

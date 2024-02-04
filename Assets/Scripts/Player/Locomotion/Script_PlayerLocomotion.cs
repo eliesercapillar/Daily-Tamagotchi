@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 namespace Player
@@ -18,16 +19,23 @@ namespace Player
 
         [Space(5)]
         [Header("Movement Properties")]
-        [SerializeField] private float _movementSpeed;
+        [Tooltip("The player movement speed when in Normal mode.")]
+        [SerializeField] private float _movementSpeedNormal;
+        [Tooltip("The player movement speed when in Strong mode.")]
+        [SerializeField] private float _movementSpeedStrong;
+        [Tooltip("The player movement speed when in Gigachad mode.")]
+        [SerializeField] private float _movementSpeedGiga;
 
         // Movement Variables
         private Vector2 _movementDirection;
+        private float _movementSpeed;
 
         // State Flags
         private bool _isMoving;
 
         // Setters/Getters
         public bool IsMoving { get { return _isMoving; } }
+        public float MovementSpeed { get { return _movementSpeed; }  set { _movementSpeed = value; }}
         
         #endregion Global Variables
 
@@ -66,6 +74,22 @@ namespace Player
                 return;
             }
             _playerRB.velocity = _movementDirection * _movementSpeed;
+        }
+
+        public void UpdateMovementSpeed(Transformation currentState)
+        {
+            switch (currentState)
+            {
+                case Transformation.Normal:
+                    _movementSpeed = _movementSpeedNormal;
+                    return;
+                case Transformation.Strong:
+                    _movementSpeed = _movementSpeedStrong;
+                    return;
+                case Transformation.Gigachad:
+                    _movementSpeed = _movementSpeedGiga;
+                    return;
+            }
         }
     }
 }

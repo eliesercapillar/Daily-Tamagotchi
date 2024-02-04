@@ -25,13 +25,11 @@ namespace Player
         
         #endregion Global Variables
 
-        // Start is called before the first frame update
         private void Start()
         {
             if (_playerAnimator == null) _playerAnimator = GetComponent<Animator>();
         }
 
-        // Update is called once per frame
         private void Update()
         {
             UpdateAnimations();
@@ -48,8 +46,8 @@ namespace Player
             // Transformation Animation
             if (_actionsManager.HasTransformationStarted) 
             {
-                if (_actionsManager.IsEnraged) _playerAnimator.SetTrigger("GIGATransform");
-                else                           _playerAnimator.SetTrigger("StrongTransform");
+                if (_actionsManager.IsEnraged) { _playerAnimator.SetTrigger("GIGATransform");   }
+                else                           { _playerAnimator.SetTrigger("StrongTransform"); }
             }
         }
 
