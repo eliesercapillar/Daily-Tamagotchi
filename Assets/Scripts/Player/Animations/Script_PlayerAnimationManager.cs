@@ -37,27 +37,54 @@ namespace Player
 
         private void UpdateAnimations()
         {   
-            // Coffee Idle Animation
-            if (!_isWaitingForCoffee) StartCoroutine("WaitForCoffee");
+            PlayCoffeeIdleAnimation();
+            PlayWalkingAnimation();
+            PlayTransformationAnimation();
+            PlayAttackAnimation();
+        }
+    
+        public void PlayCoffeeIdleAnimation()
+        {
+            if (!_isWaitingForCoffee && !_actionsManager.IsTransformed) StartCoroutine(WaitForCoffee());
 
-            // Walking Animation
-            _playerAnimator.SetBool("IsMoving", _locomotionManager.IsMoving);
-            
-            // Transformation Animation
-            if (_actionsManager.HasTransformationStarted) 
+            IEnumerator WaitForCoffee()
             {
-                if (_actionsManager.IsEnraged) { _playerAnimator.SetTrigger("GIGATransform");   }
-                else                           { _playerAnimator.SetTrigger("StrongTransform"); }
+                _isWaitingForCoffee = true;
+                yield return new WaitForSeconds(Random.Range(_coffeeWaitTimeMin, _coffeeWaitTimeMax));
+
+                if (!_actionsManager.IsTransformed) _playerAnimator.SetTrigger("DrinkCoffee");
+                _isWaitingForCoffee = false;
             }
         }
-
-        private IEnumerator WaitForCoffee()
+    
+        public void PlayWalkingAnimation()
         {
-            _isWaitingForCoffee = true;
-            yield return new WaitForSeconds(Random.Range(_coffeeWaitTimeMin, _coffeeWaitTimeMax));
-
-            _playerAnimator.SetTrigger("DrinkCoffee");
-            _isWaitingForCoffee = false;
+            _playerAnimator.SetBool("IsMoving", _locomotionManager.IsMoving);
+        }
+   
+        public void PlayTransformationAnimation()
+        {
+            if (_actionsManager.HasTransformationStarted) 
+            {
+                switch (_actionsManager.CurrentState)
+                {
+                    case Transformation.Normal:
+                        if (_actionsManager.IsEnraged) { _playerAnimator.SetTrigger("GIGATransform");   }
+                        else                           { _playerAnimator.SetTrigger("StrongTransform"); }
+                        return;
+                    default:
+                        _playerAnimator.SetTrigger("RevertTransform");
+                        return;
+                }
+            }
+        }
+    
+        public void PlayAttackAnimation()
+        {
+            if (_actionsManager.IsAttacking)
+            {
+                _playerAnimator.SetTrigger("IsAttacking");
+            }
         }
     }
 }

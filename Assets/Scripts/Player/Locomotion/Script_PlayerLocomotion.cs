@@ -32,6 +32,7 @@ namespace Player
 
         // State Flags
         private bool _isMoving;
+        private bool _lookingRight;
 
         // Setters/Getters
         public bool IsMoving { get { return _isMoving; } }
@@ -42,6 +43,7 @@ namespace Player
         private void Start()
         {
             if (_playerRB == null) _playerRB = GetComponent<Rigidbody2D>();
+            UpdateMovementSpeed(_actionManager.CurrentState);
         }
 
         private void Update()
@@ -61,6 +63,12 @@ namespace Player
 
             _movementDirection = new Vector2(moveAmountX, moveAmountY);
             _movementDirection = _movementDirection.normalized; // Prevent faster speeds when moving diagonally
+
+            if (moveAmountX != 0)
+            {
+                transform.localScale = new Vector3(moveAmountX, 1, 1); // Turn towards direction of horizontal movement.
+                _lookingRight = moveAmountX == 1;
+            }
 
             if (_movementDirection.magnitude > 0.0f) { _isMoving = true; }
             else                                     { _isMoving = false;}
@@ -90,6 +98,19 @@ namespace Player
                     _movementSpeed = _movementSpeedGiga;
                     return;
             }
+        }
+    
+        public void ApplyForce(Vector2 magnitude)
+        {
+            //Vector2 direction = _lookingRight ? Vector2.right : Vector2.left;
+            Vector2 direction = transform.forward;
+            Debug.Log($"Applying force: {magnitude * direction}");
+            //_playerRB.AddForce(magnitude * direction * 10, ForceMode2D.Impulse);
+
+            Vector3 currentPos = transform.position;
+            Vector3 toPos      = new Vector3(currentPos.x + magnitude.x, currentPos.y + magnitude.y, 0);
+        
+            transform.position = Vector3.MoveTowards(transform.position, toPos * direction, 100);
         }
     }
 }

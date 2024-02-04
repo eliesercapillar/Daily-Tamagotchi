@@ -150,14 +150,14 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: OnTransformationStartEvent
-    data: 
+    data: START
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.1666667
     functionName: OnTransformationEndEvent
-    data: 
+    data: TRANSFORMED
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
