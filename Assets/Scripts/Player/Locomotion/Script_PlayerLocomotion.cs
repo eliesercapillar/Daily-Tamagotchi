@@ -12,6 +12,7 @@ namespace Player
 
         [Header("Managers")]
         [SerializeField] Script_PlayerActions _actionManager;
+        [SerializeField] Script_PlayerAnimationManager _animationManager;
 
         [Space(5)]
         [Header("Player Components")]
@@ -33,6 +34,7 @@ namespace Player
         // State Flags
         private bool _isMoving;
         private bool _lookingRight;
+        private bool _hasTransformationStarted;
 
         // Setters/Getters
         public bool IsMoving { get { return _isMoving; } }
@@ -76,7 +78,7 @@ namespace Player
 
         private void HandlePlayerMovement()
         {
-            if (_actionManager.IsTransforming) 
+            if (_animationManager.IsTransforming) 
             {
                 _playerRB.velocity = Vector2.zero;
                 return;

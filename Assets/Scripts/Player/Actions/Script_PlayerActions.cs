@@ -34,20 +34,12 @@ namespace Player
 
         // State Flags
         [SerializeField] private Transformation _currentState;
-        private bool _hasTransformationStarted;
         private bool _isEnraged;
-        private bool _isTransforming;
-        private bool _isTransformed;
-        private bool _isAttacking;
         private bool _coroutineRunning;
 
         // Setters/Getters
-        public Transformation CurrentState   { get { return _currentState;             } }
-        public bool HasTransformationStarted { get { return _hasTransformationStarted; } }
-        public bool IsEnraged                { get { return _isEnraged;                } }
-        public bool IsTransforming           { get { return _isTransforming;           } }
-        public bool IsTransformed            { get { return _isTransformed;            } }
-        public bool IsAttacking              { get { return _isAttacking;              } }
+        public Transformation CurrentState   { get { return _currentState; } }
+        public bool IsEnraged                { get { return _isEnraged;    } }
 
         #endregion Global Variables
 
@@ -55,22 +47,11 @@ namespace Player
         {
             _currentState = Transformation.Normal;
             _isEnraged = false;
-            _hasTransformationStarted = false;
-            _isTransforming = false;
-            _isTransformed = false;
         }
 
         private void Update()
         {
-            HandleInputs();
             HandleRage();
-        }
-
-        private void HandleInputs()
-        {
-            if (!_isTransforming) _hasTransformationStarted = Input.GetKeyDown(KeyCode.F);
-            if (_isTransformed)   _isAttacking              = Input.GetKeyDown(KeyCode.Space);
-            //if (Input.GetKeyDown(KeyCode.Space)) { HandleAttack(); }
         }
 
         private void AccrueRage()
@@ -82,28 +63,22 @@ namespace Player
                 _coroutineRunning = true;
                 yield return new WaitForSeconds(2f);
                 if (!_isEnraged)    IncrementRage();
+                else                DecrementRage();
                 _coroutineRunning = false;
             }
         }
 
-        private void HandleAttack()
-        {
-
-        }
-
         private void HandleRage()
         {
+            AccrueRage();
             if (_currentState == Transformation.Gigachad)
             {
-                DecrementRage();
                 if (_rageMeter <= 0.0f){ _isEnraged = false; }
             }
             else
             {
                 if (_rageMeter >= 100.0f) { _isEnraged = true;  }
             }
-
-            AccrueRage();
         }
 
         public void IncrementRage()
@@ -122,43 +97,17 @@ namespace Player
             _rageSlider.value = _rageMeter;
         }
 
-        // Called from the Animator when transfomation animation starts.
-        public void OnTransformationStartEvent(AnimationEvent animEvent)
+        public void UpdateCurrentState(bool isTransformed)
         {
-            _isTransforming = animEvent.stringParameter == "START";
-        }
-
-        // Called from the Animator after transfomation animation has finished.
-        public void OnTransformationEndEvent(AnimationEvent animEvent)
-        {
-            _isTransformed = animEvent.stringParameter == "TRANSFORMED";
-            _isTransforming = false;
-
-            UpdateCurrentState();
-        }
-
-        private void UpdateCurrentState()
-        {
-            if (_isTransformed)
+            if (isTransformed)
             {
                 if (_isEnraged) { _currentState = Transformation.Gigachad; }
                 else            { _currentState = Transformation.Strong;   }
             }
-            else                { _currentState = Transformation.Normal; }
+            else                { _currentState = Transformation.Normal;   }
 
             _locomotionManager.UpdateMovementSpeed(_currentState);
         }
 
-        // Called from the Animator during the hit frame of the an attack
-        public void OnAttackEvent(AnimationEvent animEvent)
-        {
-            int damage = animEvent.intParameter;
-            float movementAmount = animEvent.floatParameter;
-
-            Vector2 magnitude = new Vector2(movementAmount, 0);
-            _locomotionManager.ApplyForce(magnitude);
-
-
-        }
     }
 }

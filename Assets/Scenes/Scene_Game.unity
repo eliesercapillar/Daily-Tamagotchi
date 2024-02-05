@@ -5516,6 +5516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 1417403754}
+  _animationManager: {fileID: 1417403753}
   _playerRB: {fileID: 1417403751}
   _movementSpeedNormal: 3
   _movementSpeedStrong: 5
