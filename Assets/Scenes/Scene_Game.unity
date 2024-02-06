@@ -5600,7 +5600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _locomotionManager: {fileID: 1417403750}
   _rageIncrementAmount: 10
-  _rageDecrementAmount: 0.5
+  _rageDecrementAmount: 10
   _rageSlider: {fileID: 297581788}
   _currentState: 0
 --- !u!1 &1672700276

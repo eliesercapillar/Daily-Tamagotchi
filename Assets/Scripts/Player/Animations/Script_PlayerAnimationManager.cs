@@ -51,7 +51,6 @@ namespace Player
         {
             if (!_isTransforming) _hasTransformationStarted = Input.GetKeyDown(KeyCode.F);
             if (_isTransformed)   _isAttacking              = Input.GetKeyDown(KeyCode.Space);
-            //if (Input.GetKeyDown(KeyCode.Space)) { HandleAttack(); }
         }
 
         private void UpdateAnimations()

@@ -54,30 +54,26 @@ namespace Player
             HandleRage();
         }
 
-        private void AccrueRage()
-        {
-            if (!_coroutineRunning)  StartCoroutine(Rage());
-
-            IEnumerator Rage()
-            {
-                _coroutineRunning = true;
-                yield return new WaitForSeconds(2f);
-                if (!_isEnraged)    IncrementRage();
-                else                DecrementRage();
-                _coroutineRunning = false;
-            }
-        }
-
         private void HandleRage()
         {
-            AccrueRage();
+            if (!_coroutineRunning)  StartCoroutine(ManageRage());
             if (_currentState == Transformation.Gigachad)
             {
-                if (_rageMeter <= 0.0f){ _isEnraged = false; }
+                if (_rageMeter <= 0.0f)   { _isEnraged = false; }
             }
             else
             {
-                if (_rageMeter >= 100.0f) { _isEnraged = true;  }
+                if (_rageMeter >= 100.0f) { _isEnraged = true; }
+            }
+
+            IEnumerator ManageRage()
+            {
+                _coroutineRunning = true;
+                yield return new WaitForSeconds(2f);
+
+                if (!(_currentState == Transformation.Gigachad))  IncrementRage();
+                else                                              DecrementRage();
+                _coroutineRunning = false;
             }
         }
 
