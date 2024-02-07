@@ -5599,10 +5599,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _locomotionManager: {fileID: 1417403750}
-  _rageIncrementAmount: 10
-  _rageDecrementAmount: 10
+  _animationManager: {fileID: 1417403753}
+  _rageWaitTimeSeconds: 0.8
+  _passiveRageIncrementAmount: 6
+  _passiveRageDecrementAmount: 3
   _rageSlider: {fileID: 297581788}
-  _currentState: 0
 --- !u!1 &1672700276
 GameObject:
   m_ObjectHideFlags: 0

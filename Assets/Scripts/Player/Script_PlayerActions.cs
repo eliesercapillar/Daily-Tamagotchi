@@ -19,11 +19,14 @@ namespace Player
 
         [Header("Managers")]
         [SerializeField] Script_PlayerLocomotion _locomotionManager;
+        [SerializeField] Script_PlayerAnimationManager _animationManager;
 
         [Space(5)]
         [Header("Action Properties")]
-        [SerializeField] private float _rageIncrementAmount;
-        [SerializeField] private float _rageDecrementAmount;
+        [Tooltip("The number of seconds needed to pass before rage begins to increment/decrement again.")]
+        [SerializeField] private float _rageWaitTimeSeconds;
+        [SerializeField] private float _passiveRageIncrementAmount;
+        [SerializeField] private float _passiveRageDecrementAmount;
 
         [Space(5)]
         [Header("Canvas Elements")]
@@ -33,7 +36,7 @@ namespace Player
         private float _rageMeter = 0.0f;
 
         // State Flags
-        [SerializeField] private Transformation _currentState;
+        private Transformation _currentState;
         private bool _isEnraged;
         private bool _coroutineRunning;
 
@@ -56,41 +59,47 @@ namespace Player
 
         private void HandleRage()
         {
-            if (!_coroutineRunning)  StartCoroutine(ManageRage());
-            if (_currentState == Transformation.Gigachad)
-            {
-                if (_rageMeter <= 0.0f)   { _isEnraged = false; }
-            }
-            else
-            {
-                if (_rageMeter >= 100.0f) { _isEnraged = true; }
-            }
-
+            if (!_coroutineRunning)   StartCoroutine(ManageRage());
             IEnumerator ManageRage()
             {
                 _coroutineRunning = true;
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(_rageWaitTimeSeconds);
 
-                if (!(_currentState == Transformation.Gigachad))  IncrementRage();
-                else                                              DecrementRage();
+                bool isChad = _currentState == Transformation.Gigachad;
+                
+                if      (!isChad && !_isEnraged)  IncrementRage(_passiveRageIncrementAmount);
+                else if (isChad  && _isEnraged)   DecrementRage(_passiveRageDecrementAmount);
+
                 _coroutineRunning = false;
             }
         }
 
-        public void IncrementRage()
+        private void UpdateRage(float value)
         {
-            _rageMeter += _rageIncrementAmount;
+            _rageMeter = value;
             _rageMeter = Mathf.Clamp(_rageMeter, 0.0f, 100.0f);
 
             _rageSlider.value = _rageMeter;
+
+            if (_rageMeter <= 0.0f)
+            {
+                _isEnraged = false;
+                _animationManager.PlayTransformationAnimation();
+            }
+            else if (_rageMeter >= 100.0f)
+            {
+                _isEnraged = true;
+            }
         }
 
-        public void DecrementRage()
+        public void IncrementRage(float amount)
         {
-            _rageMeter -= _rageDecrementAmount;
-            _rageMeter = Mathf.Clamp(_rageMeter, 0.0f, 100.0f);
+            UpdateRage(_rageMeter + amount);
+        }
 
-            _rageSlider.value = _rageMeter;
+        public void DecrementRage(float amount)
+        {
+            UpdateRage(_rageMeter - amount);
         }
 
         public void UpdateCurrentState(string state)

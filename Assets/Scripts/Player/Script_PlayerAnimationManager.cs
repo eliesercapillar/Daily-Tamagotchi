@@ -25,11 +25,9 @@ namespace Player
 
         // State Variables
         private bool _isTransforming;
-        private bool _isTransformed;
 
         // Getters/Setters
         public bool IsTransforming { get { return _isTransforming; } }
-        public bool IsTransformed  { get { return _isTransformed;  } }
         
         #endregion Global Variables
 
@@ -128,8 +126,8 @@ namespace Player
     
         public void PlayAttackAnimation()
         {
-            bool isTransformed = _actionsManager.CurrentState != Transformation.Normal;
-            if (isTransformed)  _playerAnimator.SetTrigger("IsAttacking");
+            bool isNormal = _actionsManager.CurrentState == Transformation.Normal;
+            if (!isNormal)  _playerAnimator.SetTrigger("IsAttacking");
         }
     
         #endregion Play Animation Methods
