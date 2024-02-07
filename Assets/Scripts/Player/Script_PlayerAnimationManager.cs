@@ -24,13 +24,10 @@ namespace Player
         private bool _isWaitingForCoffee = false;
 
         // State Variables
-        private bool _hasTransformationStarted;
-        private bool _isAttacking;
         private bool _isTransforming;
         private bool _isTransformed;
 
         // Getters/Setters
-        public bool IsAttacking    { get { return _isAttacking;    } }
         public bool IsTransforming { get { return _isTransforming; } }
         public bool IsTransformed  { get { return _isTransformed;  } }
         
@@ -49,33 +46,32 @@ namespace Player
 
         private void HandleInputs()
         {
-            if (!_isTransforming) _hasTransformationStarted = Input.GetKeyDown(KeyCode.F);
-            if (_isTransformed)   _isAttacking              = Input.GetKeyDown(KeyCode.Space);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (!_isTransforming) PlayTransformationAnimation();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PlayAttackAnimation();
+            }
         }
 
         private void UpdateAnimations()
         {   
             PlayCoffeeIdleAnimation();
             PlayWalkingAnimation();
-            PlayTransformationAnimation();
-            PlayAttackAnimation();
         }
     
         #region Animation Event Methods
 
-        // Called from the Animator when transfomation animation starts.
-        public void OnTransformationStartEvent(AnimationEvent animEvent)
+        // Called from the Animator twice during transfomation animation.
+        public void OnTransformationEvent(AnimationEvent animEvent)
         {
-            _isTransforming = animEvent.stringParameter == "START";
-        }
+            _isTransforming = animEvent.intParameter == 1;
+            string currentState = animEvent.stringParameter;
 
-        // Called from the Animator after transfomation animation has finished.
-        public void OnTransformationEndEvent(AnimationEvent animEvent)
-        {
-            _isTransformed = animEvent.stringParameter == "TRANSFORMED";
-            _isTransforming = false;
-
-            _actionsManager.UpdateCurrentState(_isTransformed);
+            _actionsManager.UpdateCurrentState(currentState);
         }
 
         // Called from the Animator during the hit frame of the an attack
@@ -95,14 +91,15 @@ namespace Player
 
         public void PlayCoffeeIdleAnimation()
         {
-            if (!_isWaitingForCoffee && !_isTransformed) StartCoroutine(WaitForCoffee());
+            bool isNormal = _actionsManager.CurrentState == Transformation.Normal;
 
+            if (isNormal && !_isWaitingForCoffee) StartCoroutine(WaitForCoffee());
             IEnumerator WaitForCoffee()
             {
                 _isWaitingForCoffee = true;
                 yield return new WaitForSeconds(Random.Range(_coffeeWaitTimeMin, _coffeeWaitTimeMax));
 
-                if (!_isTransformed) _playerAnimator.SetTrigger("DrinkCoffee");
+                if (isNormal) _playerAnimator.SetTrigger("DrinkCoffee");
                 _isWaitingForCoffee = false;
             }
         }
@@ -114,27 +111,25 @@ namespace Player
    
         public void PlayTransformationAnimation()
         {
-            if (_hasTransformationStarted) 
+            switch (_actionsManager.CurrentState)
             {
-                switch (_actionsManager.CurrentState)
-                {
-                    case Transformation.Normal:
-                        if (_actionsManager.IsEnraged) { _playerAnimator.SetTrigger("GIGATransform");   }
-                        else                           { _playerAnimator.SetTrigger("StrongTransform"); }
-                        return;
-                    default:
-                        _playerAnimator.SetTrigger("RevertTransform");
-                        return;
-                }
+                case Transformation.Normal:
+                    if (_actionsManager.IsEnraged) { _playerAnimator.SetTrigger("GIGATransform");   }
+                    else                           { _playerAnimator.SetTrigger("StrongTransform"); }
+                    break;
+                case Transformation.Strong:
+                    _playerAnimator.SetTrigger("RevertTransform");
+                    break;
+                case Transformation.Gigachad:
+                    _playerAnimator.SetTrigger("RevertTransform");
+                    break;
             }
         }
     
         public void PlayAttackAnimation()
         {
-            if (_isAttacking)
-            {
-                _playerAnimator.SetTrigger("IsAttacking");
-            }
+            bool isTransformed = _actionsManager.CurrentState != Transformation.Normal;
+            if (isTransformed)  _playerAnimator.SetTrigger("IsAttacking");
         }
     
         #endregion Play Animation Methods

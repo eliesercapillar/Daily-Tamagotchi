@@ -92,13 +92,13 @@ namespace Player
             {
                 case Transformation.Normal:
                     _movementSpeed = _movementSpeedNormal;
-                    return;
+                    break;
                 case Transformation.Strong:
                     _movementSpeed = _movementSpeedStrong;
-                    return;
+                    break;
                 case Transformation.Gigachad:
                     _movementSpeed = _movementSpeedGiga;
-                    return;
+                    break;
             }
         }
     

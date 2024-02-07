@@ -93,15 +93,20 @@ namespace Player
             _rageSlider.value = _rageMeter;
         }
 
-        public void UpdateCurrentState(bool isTransformed)
+        public void UpdateCurrentState(string state)
         {
-            if (isTransformed)
+            switch (state)
             {
-                if (_isEnraged) { _currentState = Transformation.Gigachad; }
-                else            { _currentState = Transformation.Strong;   }
+                case "Normal":
+                    _currentState = Transformation.Normal;
+                    break;
+                case "Strong":
+                    _currentState = Transformation.Strong;
+                    break;
+                case "Giga":
+                    _currentState = Transformation.Gigachad;
+                    break;
             }
-            else                { _currentState = Transformation.Normal;   }
-
             _locomotionManager.UpdateMovementSpeed(_currentState);
         }
 
