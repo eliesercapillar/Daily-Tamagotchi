@@ -119,7 +119,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: OnAttackEvent
+    functionName: OnAttackStartEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -129,21 +129,21 @@ AnimationClip:
     functionName: OnAttackEvent
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
+    floatParameter: 3
     intParameter: 0
     messageOptions: 0
   - time: 0.5
     functionName: OnAttackEvent
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
+    floatParameter: 2
     intParameter: 0
     messageOptions: 0
   - time: 0.9166667
     functionName: OnAttackEvent
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 3
+    floatParameter: 3.5
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
