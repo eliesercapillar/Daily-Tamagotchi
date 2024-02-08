@@ -79,6 +79,7 @@ namespace Player
             _rageMeter = value;
             _rageMeter = Mathf.Clamp(_rageMeter, 0.0f, 100.0f);
 
+            // TODO: Lerp values for smooth progress bar
             _rageSlider.value = _rageMeter;
 
             if (_rageMeter <= 0.0f)

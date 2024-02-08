@@ -78,8 +78,10 @@ namespace Player
         public void OnAttackEvent(AnimationEvent animEvent)
         {
             int damage = animEvent.intParameter;
+            // Force Strengths that feel pretty good:
+            // 3, 3, 5
+            // 3, 2, 3.5
             float forceStrength = animEvent.floatParameter;
-            //float forceStrength = 0.1f;
 
             _isAttacking = animEvent.stringParameter == "";
             _locomotionManager.ApplyForce(forceStrength);
@@ -88,7 +90,6 @@ namespace Player
 
         public void OnAttackStartEvent(AnimationEvent animEvent)
         {
-            Debug.Log("Asking to Halt Velocity");
             _isAttacking = animEvent.stringParameter == "";
             _locomotionManager.HaltVelocity();
         }
