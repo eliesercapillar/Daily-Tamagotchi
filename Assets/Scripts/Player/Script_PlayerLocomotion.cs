@@ -50,12 +50,17 @@ namespace Player
 
         private void Update()
         {
-            HandlePlayerInput();
+            if (!_animationManager.IsAttacking)
+            {
+                HandlePlayerInput();
+            }
         }
 
         private void FixedUpdate()
         {
-            HandlePlayerMovement();
+            if (_animationManager.IsTransforming)   { HaltVelocity();         }
+            else if (_animationManager.IsAttacking) { HandleAttackMovement(); }
+            else                                    { HandleNormalMovement(); }
         }
 
         private void HandlePlayerInput()
@@ -76,13 +81,14 @@ namespace Player
             else                                     { _isMoving = false;}
         }
 
-        private void HandlePlayerMovement()
+        private void HandleAttackMovement()
         {
-            if (_animationManager.IsTransforming) 
-            {
-                _playerRB.velocity = Vector2.zero;
-                return;
-            }
+            bool isChad = _actionManager.CurrentState == Transformation.Gigachad;
+            if (isChad) { HaltVelocity(); }
+        }
+
+        private void HandleNormalMovement()
+        {
             _playerRB.velocity = _movementDirection * _movementSpeed;
         }
 
@@ -102,17 +108,15 @@ namespace Player
             }
         }
     
-        public void ApplyForce(Vector2 magnitude)
+        public void ApplyForce(float forceStrength)
         {
-            //Vector2 direction = _lookingRight ? Vector2.right : Vector2.left;
-            Vector2 direction = transform.forward;
-            Debug.Log($"Applying force: {magnitude * direction}");
-            //_playerRB.AddForce(magnitude * direction * 10, ForceMode2D.Impulse);
+            Vector2 direction = _lookingRight ? Vector2.right : Vector2.left;
+            _playerRB.AddForce(direction * forceStrength, ForceMode2D.Impulse);
+        }
 
-            Vector3 currentPos = transform.position;
-            Vector3 toPos      = new Vector3(currentPos.x + magnitude.x, currentPos.y + magnitude.y, 0);
-        
-            transform.position = Vector3.MoveTowards(transform.position, toPos * direction, 100);
+        public void HaltVelocity()
+        {
+            _playerRB.velocity = Vector2.zero;
         }
     }
 }

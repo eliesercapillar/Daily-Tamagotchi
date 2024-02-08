@@ -25,9 +25,11 @@ namespace Player
 
         // State Variables
         private bool _isTransforming;
+        private bool _isAttacking;
 
         // Getters/Setters
         public bool IsTransforming { get { return _isTransforming; } }
+        public bool IsAttacking    { get { return _isAttacking;    } }
         
         #endregion Global Variables
 
@@ -76,11 +78,19 @@ namespace Player
         public void OnAttackEvent(AnimationEvent animEvent)
         {
             int damage = animEvent.intParameter;
-            float movementAmount = animEvent.floatParameter;
+            float forceStrength = animEvent.floatParameter;
+            //float forceStrength = 0.1f;
 
-            Vector2 magnitude = new Vector2(movementAmount, 0);
-            _locomotionManager.ApplyForce(magnitude);
+            _isAttacking = animEvent.stringParameter == "";
+            _locomotionManager.ApplyForce(forceStrength);
 
+        }
+
+        public void OnAttackStartEvent(AnimationEvent animEvent)
+        {
+            Debug.Log("Asking to Halt Velocity");
+            _isAttacking = animEvent.stringParameter == "";
+            _locomotionManager.HaltVelocity();
         }
 
         #endregion Animation Event Methods
