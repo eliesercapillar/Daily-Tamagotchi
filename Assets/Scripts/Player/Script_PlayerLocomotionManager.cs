@@ -6,12 +6,12 @@ using UnityEngine;
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Script_PlayerLocomotion : MonoBehaviour
+    public class Script_PlayerLocomotionManager : MonoBehaviour
     {
         #region Global Variables
 
         [Header("Managers")]
-        [SerializeField] Script_PlayerActions _actionManager;
+        [SerializeField] Script_PlayerActionsManager _actionManager;
         [SerializeField] Script_PlayerAnimationManager _animationManager;
 
         [Space(5)]

@@ -10,8 +10,8 @@ namespace Player
         #region Global Variables
 
         [Header("Managers")]
-        [SerializeField] Script_PlayerLocomotion _locomotionManager;
-        [SerializeField] Script_PlayerActions    _actionsManager;
+        [SerializeField] Script_PlayerLocomotionManager _locomotionManager;
+        [SerializeField] Script_PlayerActionsManager    _actionsManager;
 
         [Space(5)]
         [Header("Player Components")]

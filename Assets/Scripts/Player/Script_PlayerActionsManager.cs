@@ -13,12 +13,12 @@ namespace Player
         Gigachad
     }
 
-    public class Script_PlayerActions : MonoBehaviour
+    public class Script_PlayerActionsManager : MonoBehaviour
     {
         #region Global Variables
 
         [Header("Managers")]
-        [SerializeField] Script_PlayerLocomotion _locomotionManager;
+        [SerializeField] Script_PlayerLocomotionManager _locomotionManager;
         [SerializeField] Script_PlayerAnimationManager _animationManager;
 
         [Space(5)]
