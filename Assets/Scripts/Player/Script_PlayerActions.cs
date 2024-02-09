@@ -29,6 +29,12 @@ namespace Player
         [SerializeField] private float _passiveRageDecrementAmount;
 
         [Space(5)]
+        [Header("Character Properties")]
+        [SerializeField] private BoxCollider2D _playerHitbox;
+        [SerializeField] private BoxCollider2D _playerStrongAttackHitbox;
+        [SerializeField] private BoxCollider2D _playerGigaAttackHitbox;
+
+        [Space(5)]
         [Header("Canvas Elements")]
         [SerializeField] private Slider _rageSlider;
 
@@ -120,5 +126,14 @@ namespace Player
             _locomotionManager.UpdateMovementSpeed(_currentState);
         }
 
+        public void AttackEnemy(int damage)
+        {
+            
+        }
+
+        private void TestCollision()
+        {
+
+        }
     }
 }

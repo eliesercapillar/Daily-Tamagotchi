@@ -85,6 +85,7 @@ namespace Player
 
             _isAttacking = animEvent.stringParameter == "";
             _locomotionManager.ApplyForce(forceStrength);
+            _actionsManager.AttackEnemy(damage);
 
         }
 
