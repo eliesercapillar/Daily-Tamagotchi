@@ -3,26 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class Script_AttackHitbox : MonoBehaviour
+namespace Player
 {
-    [Header("Object Properties")]
-    [SerializeField] BoxCollider2D _hitboxCollider;
-
-    private void Start()
+    [RequireComponent(typeof(BoxCollider2D))]
+    public class Script_AttackHitbox : MonoBehaviour
     {
-        if (_hitboxCollider == null) _hitboxCollider = GetComponent<BoxCollider2D>();
-    }
+        #region Global Variables
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Attackable"))
+        private const int ATTACK_LAYER  = 6;
+        private const int TERRAIN_LAYER = 7;
+        private const int PLAYER_LAYER  = 8;
+
+        [Header("Object Properties")]
+        [SerializeField] BoxCollider2D _hitboxCollider;
+
+        #endregion Global Variables
+
+        private void Awake()
         {
-            Debug.Log("HIT!");
+            //SetupCollisionIgnores();
         }
-        else
+
+        private void Start()
         {
-            Debug.Log("MISS!");
+            if (_hitboxCollider == null) _hitboxCollider = GetComponent<BoxCollider2D>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("TAG_Attackable"))
+            {
+                Debug.Log("HIT!");
+            }
+            else
+            {
+                Debug.Log("MISS!");
+            }
+        }
+
+        private void SetupCollisionIgnores()
+        {
+            Physics2D.IgnoreLayerCollision(ATTACK_LAYER, TERRAIN_LAYER);
+            Physics2D.IgnoreLayerCollision(ATTACK_LAYER, PLAYER_LAYER);
         }
     }
 }

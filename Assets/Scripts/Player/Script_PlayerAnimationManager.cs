@@ -12,6 +12,7 @@ namespace Player
         [Header("Managers")]
         [SerializeField] Script_PlayerLocomotionManager _locomotionManager;
         [SerializeField] Script_PlayerActionsManager    _actionsManager;
+        [SerializeField] Script_PlayerHitboxManager     _hitboxManager;
 
         [Space(5)]
         [Header("Player Components")]
@@ -72,6 +73,7 @@ namespace Player
             string currentState = animEvent.stringParameter;
 
             _actionsManager.UpdateCurrentState(currentState);
+            _hitboxManager.EnablePlayerHitbox(_actionsManager.CurrentState);
         }
 
         // Called from the Animator during the hit frame of the an attack
@@ -86,6 +88,7 @@ namespace Player
             _isAttacking = animEvent.stringParameter == "";
             _locomotionManager.ApplyForce(forceStrength);
             _actionsManager.AttackEnemy(damage);
+            _hitboxManager.ShakeHitbox(); 
 
         }
 

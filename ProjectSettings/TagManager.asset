@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Attackable
+  - TAG_Attackable
+  - TAG_PlayerHitbox
+  - TAG_PlayerAttackHitbox
   layers:
   - Default
   - TransparentFX
@@ -12,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Attack
+  - Terrain
+  - Player
+  - Enemy
   - 
   - 
   - 
