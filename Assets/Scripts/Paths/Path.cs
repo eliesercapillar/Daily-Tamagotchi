@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Path")]
 public class Path : ScriptableObject
 {
-    public Vector3[] _waypoints;
+    public GameObject[] _waypoints;
 }
