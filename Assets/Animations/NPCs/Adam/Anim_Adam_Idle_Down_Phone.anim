@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Adam_Idle_Down_Phone
+  m_Name: Anim_Adam_Idle_Down_Phone
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
