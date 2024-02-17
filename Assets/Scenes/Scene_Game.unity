@@ -135,7 +135,7 @@ GameObject:
   m_Layer: 0
   m_Name: Storage Room Shelves 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -166,7 +166,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hallway Painting 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -197,7 +197,7 @@ GameObject:
   m_Layer: 0
   m_Name: Break Room Entrance 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7987,7 +7987,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Desk 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8018,7 +8018,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player Office Desk Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8206,7 +8206,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Entrance 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8268,7 +8268,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Entrance 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8299,7 +8299,7 @@ GameObject:
   m_Layer: 0
   m_Name: Front Lounge Drinks Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8330,7 +8330,7 @@ GameObject:
   m_Layer: 0
   m_Name: Break Room Shelves Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8361,7 +8361,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Desk 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8427,7 +8427,7 @@ GameObject:
   m_Layer: 0
   m_Name: Storage Room Shelves 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8458,7 +8458,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Whiteboard 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8489,7 +8489,7 @@ GameObject:
   m_Layer: 0
   m_Name: Front Lounge Entrance Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8520,7 +8520,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Left Bottom Desk Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9443,7 +9443,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Desk 5 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9474,7 +9474,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Shelves Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12554,7 +12554,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Right Bottom Desk Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12585,7 +12585,7 @@ GameObject:
   m_Layer: 0
   m_Name: Break Room Desk 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12616,7 +12616,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Entrance 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12647,7 +12647,7 @@ GameObject:
   m_Layer: 0
   m_Name: Break Room Entrance 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12678,7 +12678,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Air Conditioning Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12761,7 +12761,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Desk 4 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12792,7 +12792,7 @@ GameObject:
   m_Layer: 0
   m_Name: Storage Room Entrance Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13405,7 +13405,7 @@ GameObject:
   m_Layer: 0
   m_Name: Storage Room Money Pile Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13618,7 +13618,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Printer Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13649,7 +13649,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player Office Papers Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14543,7 +14543,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hallway Vending Machine 1 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -15902,7 +15902,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Whiteboard Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16053,7 +16053,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -16185,12 +16185,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687705944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b9adf527a9f8f4418b1ef200b11f28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _paths: {fileID: 0}
+  _rigidbody: {fileID: 1687705947}
+  _waypoints:
+  - {fileID: 447372169}
+  - {fileID: 487863901}
+  - {fileID: 1784950161}
+  - {fileID: 294044991}
+  - {fileID: 1451122653}
+  - {fileID: 1815524390}
+  _moveSpeed: 2
+  currentWaypoint: 0
 --- !u!1 &1729567210
 GameObject:
   m_ObjectHideFlags: 0
@@ -16203,7 +16212,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Whiteboard 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16234,7 +16243,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player Office Entrance Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16301,7 +16310,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Entrance 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17145,7 +17154,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player Office Printer Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17176,7 +17185,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hallway Painting 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17211,7 +17220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1934729460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17225,7 +17234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcs: []
-  _paths: []
+  _adamNPC: {fileID: 1687705944}
+  _floorTilemap: {fileID: 255285034}
+  _waypoints: []
+  _specificWaypoint: {fileID: 1784950161}
+  _startPos: {fileID: 1784950162}
+  _endPos: {fileID: 294044992}
 --- !u!4 &1934729461
 Transform:
   m_ObjectHideFlags: 0
@@ -17328,7 +17342,7 @@ GameObject:
   m_Layer: 0
   m_Name: Break Room Desk 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17359,7 +17373,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Phone Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17492,7 +17506,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hallway Vending Machine 2 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17523,7 +17537,7 @@ GameObject:
   m_Layer: 0
   m_Name: Break Room Vending Machine Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17554,7 +17568,7 @@ GameObject:
   m_Layer: 0
   m_Name: Conference Room Desk 3 Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -21754,7 +21768,7 @@ GameObject:
   m_Layer: 0
   m_Name: Office Room Left Waypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
