@@ -69,7 +69,7 @@ namespace Toolbox
             {
                 Vector3Int next = v + dir;
 
-                if (!map.IsCellEmpty(next))
+                if (map.IsCellEmpty(next))
                 {
                     yield return next;
                 }
@@ -79,7 +79,7 @@ namespace Toolbox
             {
                 Vector3Int next = v + dir;
 
-                if (!map.IsCellEmpty(next))
+                if (map.IsCellEmpty(next))
                 {
                     Vector3Int adjacent1 = v + new Vector3Int(dir.x, 0, 0);
                     Vector3Int adjacent2 = v + new Vector3Int(0, dir.y, 0);

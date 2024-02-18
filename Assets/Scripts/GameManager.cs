@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Calculating Path from " + _adamNPC.transform.position + " to " + _specificWaypoint.transform.position);
             Debug.Log("The closest starting cell is " + _floorTilemap.WorldToCell(_adamNPC.transform.position) + ", and the closest ending cell is " + _floorTilemap.WorldToCell(_specificWaypoint.transform.position));
-            //_pathToWaypoint = AStar.FindPathClosest(_floorTilemap, _adamNPC.transform.position, _specificWaypoint.transform.position);
-            _pathToWaypoint = AStar.FindPath(_floorTilemap, _startPos.position, _endPos.position);
+            _pathToWaypoint = AStar.FindPath(_floorTilemap, _adamNPC.transform.position, _specificWaypoint.transform.position);
+            //_pathToWaypoint = AStar.FindPath(_floorTilemap, _startPos.position, _endPos.position);
 
 
             if (_pathToWaypoint != null)
