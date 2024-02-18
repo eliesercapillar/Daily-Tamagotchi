@@ -2,54 +2,75 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Toolbox;
+using NPC;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager _instance;
+
     [Header("NPCs / Enemies")]
     [Tooltip("A list of NPC's the player must avoid.")]
-    [SerializeField] private List<GameObject> _npcs;
-    [SerializeField] private GameObject _adamNPC;
+    [SerializeField] private List<Script_NPC> _npcs;
 
     [Header("Environment")]
-    [SerializeField] private Tilemap _floorTilemap;
-    [Tooltip("A list of waypoints NPC's may travel to.")]
+    [Tooltip("A Tilemap only containing tiles where an NPC MAY NOT walk through.")]
+    [SerializeField] private Tilemap _unwalkableTilemap;
+    [Tooltip("A list of key waypoints NPC's may travel to.")]
     [SerializeField] private List<GameObject> _waypoints;
-    [SerializeField] private GameObject _specificWaypoint;
-    private List<Vector3> _pathToWaypoint;
+    [Tooltip("A list of key waypoints in the player office NPC's may travel to.")]
+    [SerializeField] private List<GameObject> _playerOfficeWaypoints;
+    [Tooltip("A number of key waypoints an NPC will rotate between.")]
+    [SerializeField] private int _numWaypoints;
 
-    [Header("Test")]
-    [SerializeField] private Transform _startPos;
-    [SerializeField] private Transform _endPos;
+    public Tilemap Tilemap { get { return _unwalkableTilemap; } set { _unwalkableTilemap = value; }}
 
-
-
-    void Start()
+    private void Awake()
     {
-        _pathToWaypoint = new List<Vector3>();
+        if (_instance == null) _instance = this;
+    }
+
+    private void Start()
+    {
+        AssignNPCWaypoints();
+        StartNPCBehaviour();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+    }
+
+    private void AssignNPCWaypoints()
+    {
+        foreach (Script_NPC npc in _npcs)
         {
-            Debug.Log("Calculating Path from " + _adamNPC.transform.position + " to " + _specificWaypoint.transform.position);
-            Debug.Log("The closest starting cell is " + _floorTilemap.WorldToCell(_adamNPC.transform.position) + ", and the closest ending cell is " + _floorTilemap.WorldToCell(_specificWaypoint.transform.position));
-            _pathToWaypoint = AStar.FindPath(_floorTilemap, _adamNPC.transform.position, _specificWaypoint.transform.position);
-            //_pathToWaypoint = AStar.FindPath(_floorTilemap, _startPos.position, _endPos.position);
+            List<GameObject> waypoints = GetRandomWaypoints();
+            npc.Waypoints = waypoints;
+        }
+    }
 
+    private List<GameObject> GetRandomWaypoints()
+    {
+        List<GameObject> waypoints = new List<GameObject>();
+        int count = 0;
+        
+        while (count < _numWaypoints)
+        {
+            GameObject waypoint = _waypoints.RandomElement();
+            if (!waypoints.Contains(waypoint))
+            {
+                waypoints.Add(waypoint);
+                count++;
+            }
+        }
+        return waypoints;
+    }
 
-            if (_pathToWaypoint != null)
-            {
-                foreach (Vector3 vector in _pathToWaypoint)
-                {
-                    Debug.Log("Path: " + vector);
-                }
-            }
-            else
-            {
-                Debug.Log("Path list is null");
-            }
+    private void StartNPCBehaviour()
+    {
+        foreach (Script_NPC npc in _npcs)
+        {
+            StartCoroutine(npc.StartPatrolling());
         }
     }
 }
