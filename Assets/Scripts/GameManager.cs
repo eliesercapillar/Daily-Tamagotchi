@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("NPCs / Enemies")]
     [Tooltip("A list of NPC's the player must avoid.")]
     [SerializeField] private List<Script_NPC> _npcs;
+    private Dictionary<Script_NPC, IEnumerator> _npcCoroutines;
 
     [Header("Environment")]
     [Tooltip("A Tilemap only containing tiles where an NPC MAY NOT walk through.")]
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (_instance == null) _instance = this;
+        _npcCoroutines = new Dictionary<Script_NPC, IEnumerator>();
     }
 
     private void Start()
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        PollForNPCInteractions();
     }
 
     private void AssignNPCWaypoints()
@@ -70,7 +72,25 @@ public class GameManager : MonoBehaviour
     {
         foreach (Script_NPC npc in _npcs)
         {
-            StartCoroutine(npc.StartPatrolling());
+            IEnumerator co = npc.StartPatrolling();
+            StartCoroutine(co);
+            _npcCoroutines.Add(npc, co);
+        }
+    }
+
+    private void PollForNPCInteractions()
+    {
+        foreach (Script_NPC npc in _npcs)
+        {
+            if (npc.WaypointReached)
+            {
+                if (_npcCoroutines.ContainsKey(npc)) 
+                {
+                    Debug.Log("Killing Coroutine");
+                    StopCoroutine(_npcCoroutines[npc]);
+                    _npcCoroutines.Remove(npc);
+                }
+            }
         }
     }
 }
