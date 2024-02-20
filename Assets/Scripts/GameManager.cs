@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     [Header("NPCs / Enemies")]
     [Tooltip("A list of NPC's the player must avoid.")]
-    [SerializeField] private List<Script_NPC> _npcs;
-    private Dictionary<Script_NPC, IEnumerator> _npcCoroutines;
+    [SerializeField] private List<Script_NPCMovementManager> _npcs;
+    private Dictionary<Script_NPCMovementManager, IEnumerator> _npcCoroutines;
 
     [Header("Environment")]
     [Tooltip("A Tilemap only containing tiles where an NPC MAY NOT walk through.")]
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (_instance == null) _instance = this;
-        _npcCoroutines = new Dictionary<Script_NPC, IEnumerator>();
+        _npcCoroutines = new Dictionary<Script_NPCMovementManager, IEnumerator>();
     }
 
     private void Start()
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void AssignNPCWaypoints()
     {
-        foreach (Script_NPC npc in _npcs)
+        foreach (Script_NPCMovementManager npc in _npcs)
         {
             List<GameObject> waypoints = GetRandomWaypoints();
             npc.Waypoints = waypoints;
@@ -70,26 +70,33 @@ public class GameManager : MonoBehaviour
 
     private void StartNPCBehaviour()
     {
-        foreach (Script_NPC npc in _npcs)
+        foreach (Script_NPCMovementManager npc in _npcs)
         {
-            IEnumerator co = npc.StartPatrolling();
-            StartCoroutine(co);
-            _npcCoroutines.Add(npc, co);
+            LetNPCWalk(npc);
         }
+    }
+
+    public void LetNPCWalk(Script_NPCMovementManager npc)
+    {
+        IEnumerator co = npc.StartPatrolling();
+        StartCoroutine(co);
+        _npcCoroutines.Add(npc, co);
+    }
+
+    public void StopNPCWalk(Script_NPCMovementManager npc)
+    {
+        Debug.Log("Killing Coroutine");
+        StopCoroutine(_npcCoroutines[npc]);
+        _npcCoroutines.Remove(npc);
     }
 
     private void PollForNPCInteractions()
     {
-        foreach (Script_NPC npc in _npcs)
+        foreach (Script_NPCMovementManager npc in _npcs)
         {
-            if (npc.WaypointReached)
+            if (npc.WaypointReached && _npcCoroutines.ContainsKey(npc))
             {
-                if (_npcCoroutines.ContainsKey(npc)) 
-                {
-                    Debug.Log("Killing Coroutine");
-                    StopCoroutine(_npcCoroutines[npc]);
-                    _npcCoroutines.Remove(npc);
-                }
+                StopNPCWalk(npc);
             }
         }
     }

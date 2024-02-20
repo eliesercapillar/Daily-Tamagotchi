@@ -5,14 +5,17 @@ using Toolbox;
 
 namespace NPC
 {
-    public class Script_NPC : MonoBehaviour
+    public class Script_NPCMovementManager : MonoBehaviour
     {
         [Header("Managers")]
         private GameManager _gameManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
+        [SerializeField] private Script_NPCActionsManager _actionsManager;
 
         [Header("NPC Components")]
         [SerializeField] private Rigidbody2D _rigidbody;
+
+        [Header("NPC Properties")]
         [SerializeField] private float _moveSpeed;
 
         [Header("Pathfinding")]
@@ -22,7 +25,6 @@ namespace NPC
         
         // State Flags
         private bool _waypointReached = true;
-        private bool _isInteracting = false;
         private bool _isMoving = false;
         private bool _isWalkingRight = false;
         private bool _isWalkingUp = false;
@@ -30,7 +32,7 @@ namespace NPC
         // Getters/Setters
         public List<GameObject> Waypoints { get { return _waypoints; } set { _waypoints = value; }}
         public bool WaypointReached       { get { return _waypointReached; } }
-        public bool IsInteracting         { get { return _isInteracting; } set { _isInteracting = value; }}
+        public bool IsMoving              { get { return _isMoving; } }
         public bool IsWalkingRight        { get { return _isWalkingRight; } }
         public bool IsWalkingUp           { get { return _isWalkingUp; } }
 
@@ -43,9 +45,15 @@ namespace NPC
         {
             if (other.gameObject.name == _currentWaypoint.name)
             {
-                Debug.Log("Waypoint is reached.");
+                Debug.Log("NPC " + gameObject.name + " has REACHEDs waypoint: " + _currentWaypoint.name);
                 _waypointReached = true;
-                //InteractAtWaypoint();
+                _isMoving = false;
+                //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                _actionsManager.InteractAtWaypoint();
+            }
+            else
+            {
+                Debug.Log("NPC " + gameObject.name + " has hit waypoint: " + _currentWaypoint.name);
             }
         }
 
@@ -55,9 +63,11 @@ namespace NPC
             {
                 if (_waypointReached)
                 {
+                    Debug.Log("Getting new waypoint");
                     GetNewWaypoint();
                     GetPath();
                 }
+                Debug.Log("Traversing path");
                 yield return TraversePath();
             }
         }
@@ -113,10 +123,5 @@ namespace NPC
             _isWalkingUp    = deltaY > 0.25;
         }
 
-        private void InteractAtWaypoint()
-        {
-            _isInteracting = true;
-            _isMoving = false;
-        }
     }
 }
