@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Toolbox;
+using System;
+using Unity.VisualScripting;
 
 namespace NPC
 {
@@ -51,7 +53,7 @@ namespace NPC
                 _waypointReached = true;
                 _isMoving = false;
                 //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                _actionsManager.InteractAtWaypoint();
+                _animationManager.InteractAtWaypoint(other.gameObject);
             }
             else
             {
@@ -118,13 +120,15 @@ namespace NPC
             //Debug.Log("Determining Direction of Movement");
             float deltaX = tilePos.x - npcPos.x;
             float deltaY = tilePos.y - npcPos.y;
+            //Debug.Log($"tilePos is {tilePos}, and npcPos is {npcPos}. DeltaX is {deltaX}");
 
             // Debug.Log("DeltaX is: " + deltaX);
             // Debug.Log("DeltaY is: " + deltaY);
             _isWalkingRight = deltaX > 0.00f;
             _isWalkingUp    = deltaY > 0.00f;
 
-            _isHorizontalGreater = deltaX > deltaY;
+            _isHorizontalGreater = Math.Abs(deltaX) > Math.Abs(deltaY);
+            //Debug.Log($"Horizontal is {deltaX}, and Vertical is {deltaY}.\nSo is horizontal greater? {_isHorizontalGreater}");
         }
 
     }

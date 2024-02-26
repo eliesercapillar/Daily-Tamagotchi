@@ -6,6 +6,8 @@ namespace NPC
 {
     public class Script_NPCActionsManager : MonoBehaviour
     {
+        [Header("Components")]
+        [SerializeField] private Script_NPCLineOfSight _los;
 
         [Header("Action Properties")]
         [SerializeField] private float _susIncrementAmount;
@@ -72,10 +74,6 @@ namespace NPC
             yield return new WaitForSeconds(_susCDSeconds);
             _onSusCDTimer = false;
         }
-    
-        public void InteractAtWaypoint()
-        {
-
-        }
+        
     }
 }

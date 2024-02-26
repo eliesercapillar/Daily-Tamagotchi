@@ -7,6 +7,10 @@ TagManager:
   - TAG_Attackable
   - TAG_PlayerHitbox
   - TAG_PlayerAttackHitbox
+  - TAG_LookUp
+  - TAG_LookDown
+  - TAG_LookLeft
+  - TAG_LookRight
   layers:
   - Default
   - TransparentFX

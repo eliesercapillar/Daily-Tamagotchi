@@ -8,6 +8,10 @@ namespace NPC
     {
         [Header("Managers")]
         [SerializeField] private Script_NPCActionsManager _actionsManager;
+        [SerializeField] private Script_NPCAnimationManager _animationManager;
+
+        [Header("Components")]
+        [SerializeField] private Transform _parent;
 
         private void OnTriggerStay2D(Collider2D other)
         {
@@ -23,6 +27,26 @@ namespace NPC
             {
                 _actionsManager.IsSus = false;
             }
+        }
+    
+        private void Update()
+        {
+            RotateLOS();
+        }
+
+        private void RotateLOS()
+        {
+
+        }
+
+        public void ShrinkLOS()
+        {
+
+        }
+
+        public void ExpandLOS()
+        {
+
         }
     }
 }
