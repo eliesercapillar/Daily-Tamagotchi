@@ -28,6 +28,7 @@ namespace NPC
         private bool _isMoving = false;
         private bool _isWalkingRight = false;
         private bool _isWalkingUp = false;
+        private bool _isHorizontalGreater = false;
 
         // Getters/Setters
         public List<GameObject> Waypoints { get { return _waypoints; } set { _waypoints = value; }}
@@ -35,6 +36,7 @@ namespace NPC
         public bool IsMoving              { get { return _isMoving; } }
         public bool IsWalkingRight        { get { return _isWalkingRight; } }
         public bool IsWalkingUp           { get { return _isWalkingUp; } }
+        public bool IsHorizontalGreater   { get { return _isHorizontalGreater; } }
 
         private void Start()
         {
@@ -119,8 +121,10 @@ namespace NPC
 
             // Debug.Log("DeltaX is: " + deltaX);
             // Debug.Log("DeltaY is: " + deltaY);
-            _isWalkingRight = deltaX > 0.25;
-            _isWalkingUp    = deltaY > 0.25;
+            _isWalkingRight = deltaX > 0.00f;
+            _isWalkingUp    = deltaY > 0.00f;
+
+            _isHorizontalGreater = deltaX > deltaY;
         }
 
     }

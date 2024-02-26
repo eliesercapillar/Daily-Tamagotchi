@@ -9197,7 +9197,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 818875718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e3e7e95293d30469e0595296e8fbbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1e92d134f09054c891ae225aced8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _actionsManager: {fileID: 1687705953}
@@ -23372,6 +23372,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b00c10730c827b4995e78c09b156ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actionsManager: {fileID: 1687705953}
+  _movementManager: {fileID: 1687705950}
+  _animator: {fileID: 1687705945}
+  _animationNames:
+  - Idle Up
+  - Idle Down
+  - Idle Left
+  - Idle Right
+  - Run Up
+  - Run Down
+  - Run Left
+  - Run Right
+  - Idle Book
+  - Idle Phone
 --- !u!114 &1687705953
 MonoBehaviour:
   m_ObjectHideFlags: 0
