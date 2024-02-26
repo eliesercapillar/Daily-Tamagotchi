@@ -57,7 +57,7 @@ namespace NPC
             }
             else
             {
-                Debug.Log("NPC " + gameObject.name + " has hit waypoint: " + _currentWaypoint.name);
+                Debug.Log("NPC " + gameObject.name + " has hit waypoint: " + other.gameObject.name);
             }
         }
 
