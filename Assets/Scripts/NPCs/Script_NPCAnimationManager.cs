@@ -72,10 +72,14 @@ namespace NPC
                 if (_movementManager.IsWalkingRight)
                 {
                     PlayAnimation(NPCState.Walk_Right);
+                    Debug.Log("Setting Ray Direction Right");
+                    _los.SetRayDirection(Vector3.right);
                 }
                 else
                 {
                     PlayAnimation(NPCState.Walk_Left);
+                    Debug.Log("Setting Ray Direction Left");
+                    _los.SetRayDirection(Vector3.left);
                 }
             }
             else
@@ -84,10 +88,14 @@ namespace NPC
                 if (_movementManager.IsWalkingUp)
                 {
                     PlayAnimation(NPCState.Walk_Up);
+                    Debug.Log("Setting Ray Direction Up");
+                    _los.SetRayDirection(Vector3.up);
                 }
                 else
                 {
                     PlayAnimation(NPCState.Walk_Down);
+                    Debug.Log("Setting Ray Direction Down");
+                    _los.SetRayDirection(Vector3.down);
                 }
             }
         }
@@ -102,7 +110,7 @@ namespace NPC
         {
             if (toState == _currentState) return;
 
-            Debug.Log("State " + toState + " resolves to " + (int) toState);
+            //Debug.Log("State " + toState + " resolves to " + (int) toState);
             _animator.Play(_animationNames[(int) toState], 0);
             _currentState = toState;
         }

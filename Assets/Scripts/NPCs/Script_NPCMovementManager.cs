@@ -16,6 +16,7 @@ namespace NPC
 
         [Header("NPC Components")]
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Script_NPCLineOfSight _los;
 
         [Header("NPC Properties")]
         [SerializeField] private float _moveSpeed;
@@ -110,6 +111,7 @@ namespace NPC
                 transform.position = Vector3.MoveTowards(transform.position, destination, _moveSpeed * Time.deltaTime);
                 distance = Vector3.Distance(transform.position, destination);
                 SetDirectionVariables(transform.position, destination);
+                //_los.Origin = transform.position;
                 _isMoving = true;
                 yield return null;
             }

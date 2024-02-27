@@ -9249,7 +9249,7 @@ GameObject:
   - component: {fileID: 818875722}
   - component: {fileID: 818875721}
   - component: {fileID: 818875723}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10653,9 +10653,9 @@ GameObject:
   - component: {fileID: 975279268}
   - component: {fileID: 975279267}
   - component: {fileID: 975279266}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Obstacles Layer 1
-  m_TagString: Untagged
+  m_TagString: TAG_Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15144,7 +15144,7 @@ GameObject:
   - component: {fileID: 1425845026}
   - component: {fileID: 1425845025}
   - component: {fileID: 1425845027}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: LoS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15185,10 +15185,15 @@ MonoBehaviour:
   _meshVertices: []
   _meshUV: []
   _meshTriangles: 
+  _parent: {fileID: 1687705949}
   _origin: {x: 0, y: 0, z: 0}
   _fov: 90
   _numRays: 50
   _viewDistance: 10
+  _startingAngle: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!23 &1425845025
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15528,9 +15533,9 @@ GameObject:
   - component: {fileID: 1458746984}
   - component: {fileID: 1458746983}
   - component: {fileID: 1458746982}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Obstacles Layer 0
-  m_TagString: Untagged
+  m_TagString: TAG_Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23914,7 +23919,7 @@ GameObject:
   - component: {fileID: 1687705950}
   - component: {fileID: 1687705952}
   - component: {fileID: 1687705953}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Adam NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24026,6 +24031,7 @@ MonoBehaviour:
   _animationManager: {fileID: 1687705952}
   _actionsManager: {fileID: 1687705953}
   _rigidbody: {fileID: 1687705954}
+  _los: {fileID: 1425845024}
   _moveSpeed: 2
   _waypoints: []
   _pathToWaypoint: []
@@ -24091,7 +24097,7 @@ MonoBehaviour:
   _actionsManager: {fileID: 1687705953}
   _movementManager: {fileID: 1687705950}
   _animator: {fileID: 1687705945}
-  _los: {fileID: 0}
+  _los: {fileID: 1425845024}
   _animationNames:
   - Idle Up
   - Idle Down
@@ -24117,7 +24123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc44bd6c3fd8d634db5fa93848ae482e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _los: {fileID: 0}
+  _los: {fileID: 1425845024}
   _susIncrementAmount: 25
   _susDecrementAmount: 5
   _susCDSeconds: 0.5
@@ -24472,9 +24478,9 @@ GameObject:
   - component: {fileID: 1890847729}
   - component: {fileID: 1890847728}
   - component: {fileID: 1890847727}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Obstacles Layer 2
-  m_TagString: Untagged
+  m_TagString: TAG_Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25517,7 +25523,6 @@ MonoBehaviour:
   - {fileID: 1815524390}
   - {fileID: 1442697524}
   - {fileID: 1528296077}
-  - {fileID: 2016940026}
   - {fileID: 1138794229}
   - {fileID: 874683605}
   - {fileID: 2146985988}
@@ -25742,7 +25747,7 @@ Transform:
   m_GameObject: {fileID: 2016940026}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.267, y: -16.682, z: 0}
+  m_LocalPosition: {x: -4.47, y: -16.08, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26197,9 +26202,9 @@ GameObject:
   - component: {fileID: 2136518662}
   - component: {fileID: 2136518661}
   - component: {fileID: 2136518660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: TAG_Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

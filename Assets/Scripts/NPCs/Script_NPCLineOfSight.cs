@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace NPC
 {
@@ -19,10 +21,15 @@ namespace NPC
         [SerializeField] private Vector2[] _meshUV;
         [SerializeField] private int[] _meshTriangles;
         [Space(20)]
-        [SerializeField] private Vector3 _origin;
+        [SerializeField] private Transform _parent;
+        [SerializeField] private Vector3 _origin = Vector3.zero;
         [SerializeField] private float _fov;
         [SerializeField] private int _numRays;
         [SerializeField] private float _viewDistance;
+        [SerializeField] private float _startingAngle;
+        [SerializeField] private LayerMask _layerMask;
+
+        public Vector3 Origin {set {_origin = value;}}
 
         private void OnTriggerStay2D(Collider2D other)
         {
@@ -42,17 +49,21 @@ namespace NPC
     
         private void Start()
         {
-            CreateFOVMesh();
+            // Debug.Log("Creating FOV Mesh");
+            // CreateFOVMesh();
         }
 
         private void Update()
         {
+            Debug.Log("Creating FOV Mesh");
+            CreateFOVMesh();
             //RotateLOS();
         }
 
         private void CreateFOVMesh()
         {
-            float currentAngle = 0f;
+            float currentAngle = _startingAngle - VectorToFloatAngle(Vector3.down);
+            Debug.Log($"Current angle at FOV mesh start is {currentAngle}");
             float angleIncrement = _fov / _numRays;
 
             _meshVertices = new Vector3[_numRays + 1 + 1];
@@ -66,6 +77,28 @@ namespace NPC
             for (int i = 0; i <= _numRays; i++)
             {
                 Vector3 vertex = _origin + FloatToVectorAngle(currentAngle) * _viewDistance;
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, FloatToVectorAngle(currentAngle), _viewDistance, _layerMask);
+
+                if (hit.collider == null) 
+                {
+                    Debug.Log("Hit Nothing.");
+                    //Debug.DrawRay(transform.position, FloatToVectorAngle(currentAngle) * _viewDistance, Color.white);
+                    vertex = _origin + FloatToVectorAngle(currentAngle) * _viewDistance;
+                }
+                else if (hit.collider.tag == "TAG_Obstacle")
+                {
+                    //Debug.Log($"Hit Obstacle at point: {hit.point}");
+                    Debug.Log($"Hit Obstacle {hit.collider.gameObject.name}.");
+                    //Debug.DrawRay(transform.position, FloatToVectorAngle(currentAngle) * _viewDistance, Color.red);
+                    float distance = Vector2.Distance(hit.point, transform.position);
+                    vertex = _origin + FloatToVectorAngle(currentAngle) * distance;
+                }
+                else
+                {
+                    //vertex = _origin + FloatToVectorAngle(currentAngle) * _viewDistance;
+                    Debug.Log("Hit something but not obstacle. What was hit was: " + hit.collider.gameObject.name);
+                }
+
                 _meshVertices[vertexIndex] = vertex;
 
                 if (i == 0) continue;
@@ -88,7 +121,20 @@ namespace NPC
         private Vector3 FloatToVectorAngle(float angle)
         {
             float rad = angle * (Mathf.PI/180f);
-            return new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
+            return new Vector3(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
+        }
+
+        private float VectorToFloatAngle(Vector3 direction)
+        {
+            float angle = Mathf.Atan2(direction.normalized.y, direction.normalized.x) * Mathf.Rad2Deg;
+            if (angle < 0) angle += 360;
+            return angle;
+        }
+
+        public void SetRayDirection(Vector3 direction)
+        {
+            _startingAngle = VectorToFloatAngle(direction) - _fov / 2;
+            Debug.Log($"Setting Ray Direction is {direction}.\nStarting angle is {_startingAngle}");
         }
 
         private void RotateLOS()
@@ -105,5 +151,7 @@ namespace NPC
         {
 
         }
+
+    
     }
 }

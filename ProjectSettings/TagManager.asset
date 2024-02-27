@@ -11,6 +11,7 @@ TagManager:
   - TAG_LookDown
   - TAG_LookLeft
   - TAG_LookRight
+  - TAG_Obstacle
   layers:
   - Default
   - TransparentFX
