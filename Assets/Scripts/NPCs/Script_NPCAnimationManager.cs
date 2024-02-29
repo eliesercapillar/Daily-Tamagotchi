@@ -29,8 +29,6 @@ namespace NPC
 
         [Header("Components")]
         [SerializeField] private Animator _animator;
-
-        [Header("Line of Sight")]
         [SerializeField] private Script_NPCLineOfSight _los;
 
         [Header("Animation Clip Names")]
@@ -43,7 +41,6 @@ namespace NPC
 
         // State
         private NPCState _currentState = NPCState.Idle_Down;
-        private bool _isReading;
 
 
 
@@ -68,7 +65,6 @@ namespace NPC
             // Priorities direction of greater influence
             if (_movementManager.IsHorizontalGreater)
             {
-                //Debug.Log("Horizontal is greater");
                 if (_movementManager.IsWalkingRight)
                 {
                     PlayAnimation(NPCState.Walk_Right);
@@ -84,7 +80,6 @@ namespace NPC
             }
             else
             {
-                //Debug.Log("Vertical is greater");
                 if (_movementManager.IsWalkingUp)
                 {
                     PlayAnimation(NPCState.Walk_Up);
@@ -102,7 +97,27 @@ namespace NPC
 
         private void PlayIdleAnimations()
         {
-            //_animator.SetBool("isMoving", _movementManager.IsMoving);
+            switch (_waypointProperties.NPCBehaviour)
+            {
+                case NPCState.Idle_Up:
+                    _los.SetRayDirection(Vector3.up);
+                    break;
+                case NPCState.Idle_Down:
+                    _los.SetRayDirection(Vector3.down);
+                    break;
+                case NPCState.Idle_Left:
+                    _los.SetRayDirection(Vector3.left);
+                    break;
+                case NPCState.Idle_Right:
+                    _los.SetRayDirection(Vector3.right);
+                    break;
+                case NPCState.Idle_Phone:
+                    _los.SetRayDirection(Vector3.down);
+                    break;
+                case NPCState.Idle_Book:
+                    _los.SetRayDirection(Vector3.down);
+                    break;
+            }
             PlayAnimation(_waypointProperties.NPCBehaviour);
         }
 
@@ -121,7 +136,7 @@ namespace NPC
             StartCoroutine(HoldPosition());
             if (_waypointProperties.ShouldInteract)
             {
-                //_los.ShrinkLOS();
+                _los.ShrinkLOS();
             }
 
             IEnumerator HoldPosition()
@@ -129,7 +144,7 @@ namespace NPC
                 yield return new WaitForSeconds(UnityEngine.Random.Range(_minInteractTime, _maxInteractTime));
                 
                 _gameManager.LetNPCWalk(_movementManager);
-                //if (_waypointProperties.ShouldInteract) _los.ExpandLOS();
+                if (_waypointProperties.ShouldInteract) _los.ExpandLOS();
             }
         }
     }

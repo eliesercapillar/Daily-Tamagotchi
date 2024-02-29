@@ -15181,19 +15181,13 @@ MonoBehaviour:
   _actionsManager: {fileID: 1687705953}
   _animationManager: {fileID: 0}
   _meshFilter: {fileID: 1425845026}
-  _meshRenderer: {fileID: 1425845025}
-  _meshVertices: []
-  _meshUV: []
-  _meshTriangles: 
-  _parent: {fileID: 1687705949}
-  _origin: {x: 0, y: 0, z: 0}
   _fov: 90
   _numRays: 50
-  _viewDistance: 10
-  _startingAngle: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
+  _minViewDistance: 1
+  _maxViewDistance: 10
 --- !u!23 &1425845025
 MeshRenderer:
   m_ObjectHideFlags: 0

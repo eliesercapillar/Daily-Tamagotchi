@@ -53,7 +53,6 @@ namespace NPC
                 Debug.Log("NPC " + gameObject.name + " has REACHEDs waypoint: " + _currentWaypoint.name);
                 _waypointReached = true;
                 _isMoving = false;
-                //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 _animationManager.InteractAtWaypoint(other.gameObject);
             }
             else
@@ -70,9 +69,7 @@ namespace NPC
                 {
                     Debug.Log("Getting new waypoint");
                     GetNewWaypoint();
-                    GetPath();
                 }
-                Debug.Log("Traversing path");
                 yield return TraversePath();
             }
         }
@@ -86,10 +83,6 @@ namespace NPC
             }
             _currentWaypoint = newWaypoint;
             _waypointReached = false;
-        }
-
-        private void GetPath()
-        {
             _pathToWaypoint = AStar.FindPath(_gameManager.Tilemap, transform.position, _currentWaypoint.transform.position);
         }
 
@@ -111,7 +104,6 @@ namespace NPC
                 transform.position = Vector3.MoveTowards(transform.position, destination, _moveSpeed * Time.deltaTime);
                 distance = Vector3.Distance(transform.position, destination);
                 SetDirectionVariables(transform.position, destination);
-                //_los.Origin = transform.position;
                 _isMoving = true;
                 yield return null;
             }
