@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace NPC
@@ -24,7 +25,7 @@ namespace NPC
     {
         [Header("Managers")]
         [SerializeField] private GameManager _gameManager; 
-        [SerializeField] private Script_NPCActionsManager _actionsManager;
+        [SerializeField] private Script_NPCSusManager _susManager;
         [SerializeField] private Script_NPCMovementManager _movementManager;
 
         [Header("Components")]
@@ -41,6 +42,7 @@ namespace NPC
 
         // State
         private NPCState _currentState = NPCState.Idle_Down;
+        private bool _isRandomIdling = false;
 
 
 
@@ -53,7 +55,7 @@ namespace NPC
         // Update is called once per frame
         void Update()
         {
-            if (!_actionsManager.IsInteracting)
+            if (!_isRandomIdling)
             {
                 if (_movementManager.IsMoving) PlayMovementAnimations();
                 else PlayIdleAnimations();
@@ -121,7 +123,25 @@ namespace NPC
             PlayAnimation(_waypointProperties.NPCBehaviour);
         }
 
-        private void PlayAnimation(NPCState toState)
+        public IEnumerator RandomlyIdle(NPCState behaviour, float minIdleTime, float maxIdleTime)
+        {
+            _isRandomIdling = true;
+            _los.SetRayDirection(Vector3.down);
+            PlayAnimation(behaviour);
+
+            _los.ShrinkLOS();
+
+            bool waitForIdle = true;
+            while (waitForIdle)
+            {
+                yield return new WaitForSeconds(UnityEngine.Random.Range(minIdleTime, maxIdleTime));
+                waitForIdle = false;
+                _isRandomIdling = false;
+            }
+            _los.ExpandLOS();
+        }
+
+        public void PlayAnimation(NPCState toState)
         {
             if (toState == _currentState) return;
 

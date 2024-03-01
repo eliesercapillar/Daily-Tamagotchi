@@ -9,13 +9,13 @@ namespace NPC
     public class Script_NPCAura : MonoBehaviour
     {
         [Header("Managers")]
-        [SerializeField] private Script_NPCActionsManager _actionsManager;
+        [SerializeField] private Script_NPCSusManager _susManager;
 
         private void OnTriggerStay2D(Collider2D other)
         {
             if (other.tag == "TAG_PlayerHitbox")
             {
-                _actionsManager.IsSus = true;
+                _susManager.IsSus = true;
             }
         }
 
@@ -23,7 +23,7 @@ namespace NPC
         {
             if (other.tag == "TAG_PlayerHitbox")
             {
-                _actionsManager.IsSus = false;
+                _susManager.IsSus = false;
             }
         }
     }

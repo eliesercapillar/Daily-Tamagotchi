@@ -7,7 +7,7 @@ namespace NPC
     public class Script_NPCLineOfSight : MonoBehaviour
     {
         [Header("Managers")]
-        [SerializeField] private Script_NPCActionsManager _actionsManager;
+        [SerializeField] private Script_NPCSusManager _susManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
 
         [Header("Components")]
@@ -24,6 +24,9 @@ namespace NPC
         [SerializeField] private float _minViewDistance;
         [SerializeField] private float _maxViewDistance;
         private float _currViewDistance;
+
+        private bool _isShrinking = false;
+        private bool _isExpanding = false;
 
 
         public float FOV             {set {_fov = value;}}
@@ -66,6 +69,12 @@ namespace NPC
                 else if (hit.collider.tag == "TAG_Obstacle")
                 {
                     //Debug.DrawRay(transform.position, FloatToVectorAngle(currentAngle) * _viewDistance, Color.red);
+                    float distanceToHit = Vector2.Distance(hit.point, transform.position);
+                    vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * distanceToHit;
+                }
+                else if (hit.collider.tag == "TAG_Player")
+                {
+                    _susManager.IncrementSUS();
                     float distanceToHit = Vector2.Distance(hit.point, transform.position);
                     vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * distanceToHit;
                 }
@@ -116,32 +125,36 @@ namespace NPC
         public void ShrinkLOS()
         {
             // TODO: Smooth Shrink == Lerp?
-            StartCoroutine(Shrink());
+            if (!_isShrinking) StartCoroutine(Shrink());
 
             IEnumerator Shrink()
             {
+                _isShrinking = true;
                 while (_currViewDistance > _minViewDistance)
                 {
                     _currViewDistance--;
                     Debug.Log($"Shrinking currView, it is {_currViewDistance}");
                     yield return new WaitForSeconds(0.1f);
                 }
+                _isShrinking = false;
             }
         }
 
         public void ExpandLOS()
         {
             // TODO: Smooth Expand == Lerp?
-            StartCoroutine(Expand());
+            if (!_isExpanding) StartCoroutine(Expand());
 
             IEnumerator Expand()
             {
+                _isExpanding = true;
                 while (_currViewDistance < _maxViewDistance)
                 {
                     _currViewDistance++;
                     Debug.Log($"Expanding currView, it is {_currViewDistance}");
                     yield return new WaitForSeconds(0.1f);
                 }
+                _isExpanding = false;
             }
         }
 

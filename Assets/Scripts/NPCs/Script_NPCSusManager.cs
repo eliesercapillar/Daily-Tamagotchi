@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace NPC
 {
-    public class Script_NPCActionsManager : MonoBehaviour
+    public class Script_NPCSusManager : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField] private Script_NPCLineOfSight _los;
+        [SerializeField] private Animator _susBubbleAnimator;
+        
 
         [Header("Action Properties")]
         [SerializeField] private float _susIncrementAmount;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toolbox;
 using System;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 namespace NPC
 {
@@ -12,7 +12,7 @@ namespace NPC
         [Header("Managers")]
         private GameManager _gameManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
-        [SerializeField] private Script_NPCActionsManager _actionsManager;
+        [SerializeField] private Script_NPCSusManager _susManager;
 
         [Header("NPC Components")]
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -20,6 +20,11 @@ namespace NPC
 
         [Header("NPC Properties")]
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _minIdleTime;
+        [SerializeField] private float _maxIdleTime; 
+        [Tooltip("The chance that this NPC will randomly idle while on the path to the next waypoint.")]
+        [SerializeField] private float _chanceToIdle = 0.3f;    // Default: No Idle 70% of the time, Idle 30% of the time
+        [SerializeField] private bool _shouldIdle = false;
 
         [Header("Pathfinding")]
         [SerializeField] private List<GameObject> _waypoints;   // A list of key waypoints this NPC will go to.
@@ -84,14 +89,28 @@ namespace NPC
             _currentWaypoint = newWaypoint;
             _waypointReached = false;
             _pathToWaypoint = AStar.FindPath(_gameManager.Tilemap, transform.position, _currentWaypoint.transform.position);
+            float chance = UnityEngine.Random.value;
+            _shouldIdle = chance <= _chanceToIdle;
+
         }
 
         private IEnumerator TraversePath()
         {
+            int randomIndex = UnityEngine.Random.Range(_pathToWaypoint.Count * 2 / 4, _pathToWaypoint.Count * 3 / 4);
+            int count = 0;
             foreach (Vector3 destination in _pathToWaypoint)
             {
+                if (count == randomIndex && _shouldIdle) yield return PerformRandomIdle();
                 yield return MoveToWaypoint(destination);
+                count++;
             }
+        }
+
+        private IEnumerator PerformRandomIdle()
+        {
+            //_animationManager.PlayAnimation(NPCState.Idle_Book);
+            yield return _animationManager.RandomlyIdle(NPCState.Idle_Phone, _minIdleTime, _maxIdleTime);
+            _shouldIdle = false;
         }
 
         private IEnumerator MoveToWaypoint(Vector3 destination)
@@ -111,18 +130,12 @@ namespace NPC
         
         private void SetDirectionVariables(Vector3 npcPos, Vector3 tilePos)
         {
-            //Debug.Log("Determining Direction of Movement");
             float deltaX = tilePos.x - npcPos.x;
             float deltaY = tilePos.y - npcPos.y;
-            //Debug.Log($"tilePos is {tilePos}, and npcPos is {npcPos}. DeltaX is {deltaX}");
-
-            // Debug.Log("DeltaX is: " + deltaX);
-            // Debug.Log("DeltaY is: " + deltaY);
             _isWalkingRight = deltaX > 0.00f;
             _isWalkingUp    = deltaY > 0.00f;
 
             _isHorizontalGreater = Math.Abs(deltaX) > Math.Abs(deltaY);
-            //Debug.Log($"Horizontal is {deltaX}, and Vertical is {deltaY}.\nSo is horizontal greater? {_isHorizontalGreater}");
         }
 
     }
