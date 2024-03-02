@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 72294118}
   m_Layer: 0
   m_Name: Storage Room Shelves 1 Waypoint
-  m_TagString: TAG_LookRight
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 116183446}
   m_Layer: 0
   m_Name: Hallway Painting 1 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 182198318}
   m_Layer: 0
   m_Name: Break Room Entrance 1 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8171,7 +8171,7 @@ GameObject:
   - component: {fileID: 277559083}
   m_Layer: 0
   m_Name: Conference Room Desk 2 Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8263,7 +8263,7 @@ GameObject:
   - component: {fileID: 294044994}
   m_Layer: 0
   m_Name: Player Office Desk Waypoint
-  m_TagString: TAG_LookLeft
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8512,7 +8512,7 @@ GameObject:
   - component: {fileID: 419575829}
   m_Layer: 0
   m_Name: Conference Room Entrance 1 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8636,7 +8636,7 @@ GameObject:
   - component: {fileID: 447372173}
   m_Layer: 0
   m_Name: Office Room Entrance 1 Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8755,7 +8755,7 @@ GameObject:
   - component: {fileID: 487863904}
   m_Layer: 0
   m_Name: Front Lounge Drinks Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8847,7 +8847,7 @@ GameObject:
   - component: {fileID: 517288154}
   m_Layer: 0
   m_Name: Break Room Shelves Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8939,7 +8939,7 @@ GameObject:
   - component: {fileID: 604405756}
   m_Layer: 0
   m_Name: Conference Room Desk 1 Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9018,6 +9018,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldInteract: 1
   _npcBehaviour: 1
+--- !u!1 &605574660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605574661}
+  - component: {fileID: 605574662}
+  m_Layer: 9
+  m_Name: NPC Hitbox Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605574661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605574660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1687705949}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &605574662
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605574660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 759
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.58764744}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4420834}
+  m_EdgeRadius: 0
 --- !u!1 &642376239
 GameObject:
   m_ObjectHideFlags: 0
@@ -9066,7 +9143,7 @@ GameObject:
   - component: {fileID: 672609763}
   m_Layer: 0
   m_Name: Storage Room Shelves 2 Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9158,7 +9235,7 @@ GameObject:
   - component: {fileID: 778850394}
   m_Layer: 0
   m_Name: Conference Room Whiteboard 1 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9249,7 +9326,7 @@ GameObject:
   - component: {fileID: 818875722}
   - component: {fileID: 818875721}
   - component: {fileID: 818875723}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9283,10 +9360,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 759
+    m_Bits: 2039
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -9380,7 +9457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1e92d134f09054c891ae225aced8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _susManager: {fileID: 0}
+  _susManager: {fileID: 1687705953}
 --- !u!1 &869460041
 GameObject:
   m_ObjectHideFlags: 0
@@ -9394,7 +9471,7 @@ GameObject:
   - component: {fileID: 869460044}
   m_Layer: 0
   m_Name: Front Lounge Entrance Waypoint
-  m_TagString: TAG_LookRight
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9486,7 +9563,7 @@ GameObject:
   - component: {fileID: 874683608}
   m_Layer: 0
   m_Name: Office Room Left Bottom Desk Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10470,7 +10547,7 @@ GameObject:
   - component: {fileID: 937454390}
   m_Layer: 0
   m_Name: Conference Room Desk 5 Waypoint
-  m_TagString: TAG_LookRight
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10562,7 +10639,7 @@ GameObject:
   - component: {fileID: 964828119}
   m_Layer: 0
   m_Name: Conference Room Shelves Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13703,7 +13780,7 @@ GameObject:
   - component: {fileID: 1138794232}
   m_Layer: 0
   m_Name: Office Room Right Bottom Desk Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13795,7 +13872,7 @@ GameObject:
   - component: {fileID: 1166166262}
   m_Layer: 0
   m_Name: Break Room Desk 1 Waypoint
-  m_TagString: TAG_LookLeft
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13887,7 +13964,7 @@ GameObject:
   - component: {fileID: 1174774132}
   m_Layer: 0
   m_Name: Conference Room Entrance 2 Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13979,7 +14056,7 @@ GameObject:
   - component: {fileID: 1186035242}
   m_Layer: 0
   m_Name: Break Room Entrance 2 Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14058,6 +14135,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldInteract: 0
   _npcBehaviour: 0
+--- !u!1 &1198009576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1198009577}
+  - component: {fileID: 1198009578}
+  m_Layer: 12
+  m_Name: Player NPC Normal Hitbox
+  m_TagString: TAG_PlayerTransformedHitbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1198009577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198009576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3587875741382206785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1198009578
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198009576}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.034677505, y: -0.07219267}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.79899025, y: 1.2177839}
+  m_EdgeRadius: 0
 --- !u!1 &1238812112
 GameObject:
   m_ObjectHideFlags: 0
@@ -14071,7 +14225,7 @@ GameObject:
   - component: {fileID: 1238812115}
   m_Layer: 0
   m_Name: Conference Room Air Conditioning Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14216,7 +14370,7 @@ GameObject:
   - component: {fileID: 1269093165}
   m_Layer: 0
   m_Name: Conference Room Desk 4 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14308,7 +14462,7 @@ GameObject:
   - component: {fileID: 1280302187}
   m_Layer: 0
   m_Name: Storage Room Entrance Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14982,7 +15136,7 @@ GameObject:
   - component: {fileID: 1307894536}
   m_Layer: 0
   m_Name: Storage Room Money Pile Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15178,8 +15332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e3e7e95293d30469e0595296e8fbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _susManager: {fileID: 0}
-  _animationManager: {fileID: 0}
+  _susManager: {fileID: 1687705953}
+  _animationManager: {fileID: 1687705952}
+  _player: {fileID: 4946053696815620139}
   _meshFilter: {fileID: 1425845026}
   _fov: 60
   _numRays: 25
@@ -15344,7 +15499,7 @@ GameObject:
   - component: {fileID: 1442697527}
   m_Layer: 0
   m_Name: Office Room Printer Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15436,7 +15591,7 @@ GameObject:
   - component: {fileID: 1451122656}
   m_Layer: 0
   m_Name: Player Office Papers Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16391,7 +16546,7 @@ GameObject:
   - component: {fileID: 1472180347}
   m_Layer: 0
   m_Name: Hallway Vending Machine 1 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23743,7 +23898,7 @@ GameObject:
   - component: {fileID: 1528296080}
   m_Layer: 0
   m_Name: Office Room Whiteboard Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23907,6 +24062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687114488}
   - component: {fileID: 1687114490}
+  - component: {fileID: 1687114491}
   m_Layer: 2
   m_Name: Mood Sprite
   m_TagString: Untagged
@@ -23981,6 +24137,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1687114491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687114487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf836aa570d36d4392a244b9b9eb62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _susManager: {fileID: 1687705953}
+  _spriteRenderer: {fileID: 1687114490}
+  _moods:
+  - {fileID: -2131079438, guid: 6a24625e29d448c4e9d0bb5b55eed9fd, type: 3}
+  - {fileID: 877280160, guid: 6a24625e29d448c4e9d0bb5b55eed9fd, type: 3}
+  - {fileID: -2034211413, guid: 6a24625e29d448c4e9d0bb5b55eed9fd, type: 3}
+  - {fileID: 257899690, guid: 6a24625e29d448c4e9d0bb5b55eed9fd, type: 3}
+  - {fileID: -1655132365, guid: 6a24625e29d448c4e9d0bb5b55eed9fd, type: 3}
+  - {fileID: -1280097078, guid: 6a24625e29d448c4e9d0bb5b55eed9fd, type: 3}
+  _currentMood: 0
 --- !u!1 &1687705944
 GameObject:
   m_ObjectHideFlags: 0
@@ -24093,6 +24271,7 @@ Transform:
   - {fileID: 1425845023}
   - {fileID: 818875719}
   - {fileID: 1687114488}
+  - {fileID: 605574661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1687705950
@@ -24207,7 +24386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _susBubbleAnimator: {fileID: 0}
-  _susIncrementAmount: 25
+  _susIncrementAmount: 5
   _susDecrementAmount: 5
   _susCDSeconds: 0.5
 --- !u!50 &1687705954
@@ -24250,7 +24429,7 @@ GameObject:
   - component: {fileID: 1729567213}
   m_Layer: 0
   m_Name: Conference Room Whiteboard 2 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24342,7 +24521,7 @@ GameObject:
   - component: {fileID: 1784950164}
   m_Layer: 0
   m_Name: Player Office Entrance Waypoint
-  m_TagString: TAG_LookDown
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24470,7 +24649,7 @@ GameObject:
   - component: {fileID: 1815524393}
   m_Layer: 0
   m_Name: Office Room Entrance 2 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25375,7 +25554,7 @@ GameObject:
   - component: {fileID: 1917481344}
   m_Layer: 0
   m_Name: Player Office Printer Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25467,7 +25646,7 @@ GameObject:
   - component: {fileID: 1932458225}
   m_Layer: 0
   m_Name: Hallway Painting 2 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25724,7 +25903,7 @@ GameObject:
   - component: {fileID: 1995796328}
   m_Layer: 0
   m_Name: Break Room Desk 2 Waypoint
-  m_TagString: TAG_LookRight
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25816,7 +25995,7 @@ GameObject:
   - component: {fileID: 2016940029}
   m_Layer: 0
   m_Name: Office Room Phone Waypoint
-  m_TagString: TAG_LookRight
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26010,7 +26189,7 @@ GameObject:
   - component: {fileID: 2028650593}
   m_Layer: 0
   m_Name: Hallway Vending Machine 2 Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26102,7 +26281,7 @@ GameObject:
   - component: {fileID: 2038743983}
   m_Layer: 0
   m_Name: Break Room Vending Machine Waypoint
-  m_TagString: TAG_LookUp
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26194,7 +26373,7 @@ GameObject:
   - component: {fileID: 2042297005}
   m_Layer: 0
   m_Name: Conference Room Desk 3 Waypoint
-  m_TagString: TAG_LookLeft
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30485,7 +30664,7 @@ GameObject:
   - component: {fileID: 2146985991}
   m_Layer: 0
   m_Name: Office Room Left Waypoint
-  m_TagString: TAG_LookRight
+  m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30590,8 +30769,8 @@ GameObject:
   - component: {fileID: 3692319790207541913}
   - component: {fileID: 2853271495538182563}
   m_Layer: 8
-  m_Name: Player Normal Hitbox
-  m_TagString: TAG_PlayerHitbox
+  m_Name: Player Terrain Normal Hitbox
+  m_TagString: TAG_PlayerNormalTerrainHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30849,6 +31028,7 @@ Transform:
   m_Children:
   - {fileID: 5263538084952880271}
   - {fileID: 3692319790207541913}
+  - {fileID: 1198009577}
   - {fileID: 329750667783688670}
   - {fileID: 3740262717780600123}
   - {fileID: 8447736638536315767}

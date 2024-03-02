@@ -11,19 +11,17 @@ namespace NPC
         [Header("Managers")]
         [SerializeField] private Script_NPCSusManager _susManager;
 
-        private void OnTriggerStay2D(Collider2D other)
+        // If the player gets close enough to the NPC where this triggers, the game will be over right away.
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.tag == "TAG_PlayerHitbox")
+            if (other.tag == "TAG_PlayerTransformedHitbox")
             {
-                _susManager.IsSus = true;
+                Debug.Log("GG PLAYER TOO CLOSE. GG GG GAME OVER.");
+                //_susManager.IsSus = true;
             }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.tag == "TAG_PlayerHitbox")
+            else
             {
-                _susManager.IsSus = false;
+                Debug.Log("The other tag was: " + other.tag);
             }
         }
     }

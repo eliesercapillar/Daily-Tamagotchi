@@ -7,11 +7,12 @@ TagManager:
   - TAG_Attackable
   - TAG_PlayerHitbox
   - TAG_PlayerAttackHitbox
-  - TAG_LookUp
-  - TAG_LookDown
-  - TAG_LookLeft
-  - TAG_LookRight
   - TAG_Obstacle
+  - TAG_PlayerTransformedHitbox
+  - TAG_PlayerNormalTerrainHitbox
+  - TAG_PlayerTransformedTerrainHitbox
+  - TAG_PlayerNormalNPCHitbox
+  - TAG_PlayerTransformedNPCHitbox
   layers:
   - Default
   - TransparentFX
@@ -23,9 +24,9 @@ TagManager:
   - Terrain
   - Player
   - NPC
-  - 
-  - 
-  - 
+  - Player&Terrain
+  - Player&NPC
+  - Aura
   - 
   - 
   - 

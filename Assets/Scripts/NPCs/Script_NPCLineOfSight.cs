@@ -10,6 +10,9 @@ namespace NPC
         [SerializeField] private Script_NPCSusManager _susManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
 
+        [Header("Player")]
+        [SerializeField] private GameObject _player;
+
         [Header("Components")]
         [SerializeField] private MeshFilter _meshFilter;
 
@@ -18,6 +21,7 @@ namespace NPC
         private Vector2[] _meshUV;
         private int[] _meshTriangles;
         private float _startingAngle;
+        private Vector3 _lookDirection;
         [SerializeField] private float _fov;
         [SerializeField] private int _numRays;
         [SerializeField] private LayerMask _layerMask;
@@ -38,9 +42,37 @@ namespace NPC
             _currViewDistance = _maxViewDistance;
         }
 
+        private void Update()
+        {
+            PollForPlayerInFOV();
+        }
+
         private void LateUpdate()
         {
             DrawFOVMesh();
+        }
+
+        private void PollForPlayerInFOV()
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+            if (distanceToPlayer > _currViewDistance) return;
+
+            Vector3 playerDirection = (_player.transform.position - transform.position).normalized;
+            float angle = Vector3.Angle(_lookDirection, playerDirection);
+            if (angle > _fov / 2f) return;
+            
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, playerDirection, _currViewDistance);
+            if (rayHit.collider == null) return;
+
+            if (rayHit.collider.tag == "")
+            {
+                _susManager.IsSus = true;
+            }
+            else
+            {
+                _susManager.IsSus = false;
+            }
+
         }
 
         private void DrawFOVMesh()
@@ -72,7 +104,7 @@ namespace NPC
                     float distanceToHit = Vector2.Distance(hit.point, transform.position);
                     vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * distanceToHit;
                 }
-                else if (hit.collider.tag == "TAG_Player")
+                else if (hit.collider.tag == "TAG_PlayerHitbox")
                 {
                     _susManager.IncrementSUS();
                     float distanceToHit = Vector2.Distance(hit.point, transform.position);
@@ -119,6 +151,7 @@ namespace NPC
 
         public void SetRayDirection(Vector3 direction)
         {
+            _lookDirection = direction;
             _startingAngle = VectorToFloatAngle(direction) + _fov / 2;
         }
 
@@ -133,7 +166,7 @@ namespace NPC
                 while (_currViewDistance > _minViewDistance)
                 {
                     _currViewDistance--;
-                    Debug.Log($"Shrinking currView, it is {_currViewDistance}");
+                    //Debug.Log($"Shrinking currView, it is {_currViewDistance}");
                     yield return new WaitForSeconds(0.1f);
                 }
                 _isShrinking = false;
@@ -151,7 +184,7 @@ namespace NPC
                 while (_currViewDistance < _maxViewDistance)
                 {
                     _currViewDistance++;
-                    Debug.Log($"Expanding currView, it is {_currViewDistance}");
+                    //Debug.Log($"Expanding currView, it is {_currViewDistance}");
                     yield return new WaitForSeconds(0.1f);
                 }
                 _isExpanding = false;

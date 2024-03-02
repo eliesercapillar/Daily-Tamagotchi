@@ -28,19 +28,18 @@ namespace NPC
         [SerializeField] private Sprite[] _moods;
         private int numMoods;
 
-        private int _currentMood;
+        [SerializeField] private int _currentMood;
 
         private void Start()
         {
             _currentMood = 0;
-            numMoods = _moods.Length - 1;
+            numMoods = _moods.Length;
         }
         
         private void Update()
         {
             UpdateSprite();
         }
-
 
         private void UpdateSprite()
         {

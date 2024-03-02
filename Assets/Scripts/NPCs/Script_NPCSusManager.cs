@@ -37,7 +37,7 @@ namespace NPC
         // Update is called once per frame
         void Update()
         {
-            //PollForSus();
+            PollForSus();
         }
 
         private void PollForSus()
