@@ -96,7 +96,6 @@ namespace NPC
                 }
                 else
                 {
-                    PlayAnimation(NPCState.Walk_Down);
                     if (_movementManager.IsMoving) PlayAnimation(NPCState.Walk_Down);
                     else                           PlayAnimation(NPCState.Idle_Down);
                     _los.SetRayDirection(Vector3.down);
@@ -142,12 +141,10 @@ namespace NPC
                 _los.ShrinkLOS();
             }
 
-            _isInteracting = false;
-
             IEnumerator HoldPosition()
             {
                 yield return _interactWaitTime;
-                
+                _isInteracting = false;
                 _gameManager.LetNPCWalk(_movementManager);
                 if (_waypointProperties.ShouldInteract) _los.ExpandLOS();
             }
