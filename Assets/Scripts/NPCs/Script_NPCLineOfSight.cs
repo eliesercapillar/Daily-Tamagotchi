@@ -46,7 +46,7 @@ namespace NPC
             _meshTriangles = new int[_numLOSRays * 3];
         }
 
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             DrawFOVMesh();
             PollForPlayerInFOV();

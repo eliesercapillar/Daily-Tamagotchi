@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using NPC;
+using System.Linq;
+using Player;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,12 +27,21 @@ public class GameManager : MonoBehaviour
     [Tooltip("A number of key waypoints an NPC will rotate between.")]
     [SerializeField] private int _numWaypoints;
 
+    [Header("Game Over Settings")]
+    [SerializeField] private Script_PlayerLocomotionManager _playerLocomotion;
+    [SerializeField] Image _blackOutPanel;
+    private Color _currentPanelColor;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private float _zoomSpeed;
+    private bool _endInProgress;
+
     public Tilemap Tilemap { get { return _unwalkableTilemap; } set { _unwalkableTilemap = value; }}
 
     private void Awake()
     {
         if (_instance == null) _instance = this;
         _npcCoroutines = new Dictionary<Script_NPCMovementManager, IEnumerator>();
+        _blackOutPanel.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -99,4 +112,58 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    #region Game Over
+    public void GameOver()
+    {
+        if (!_endInProgress)
+        {
+            _endInProgress = true;
+            _playerLocomotion.enabled = false;
+            HaltAllNPCs();
+            StartCoroutine(EndGame());
+        }
+    }
+
+    private void HaltAllNPCs()
+    {
+        foreach (var value in _npcCoroutines.Values.ToList())
+        {
+            StopCoroutine(value);
+        }
+    }
+
+    private IEnumerator EndGame()
+    {
+        yield return ZoomCamera();
+        yield return BlackOutScreen();
+        SceneManager.LoadScene("Game Over Scene");
+    }
+
+    private IEnumerator ZoomCamera()
+    {
+        float progress = 0f;
+        
+        while (progress < 1f)
+        {
+            progress += Time.deltaTime * _zoomSpeed;
+            _camera.orthographicSize = Mathf.Lerp(5, 1, progress);
+            yield return null;
+        }
+    }
+
+    private IEnumerator BlackOutScreen()
+    {
+        _blackOutPanel.gameObject.SetActive(true);
+        _currentPanelColor = _blackOutPanel.color;
+
+        while (_currentPanelColor.a < 1f)
+        {
+            _currentPanelColor.a += Time.deltaTime;
+            _blackOutPanel.color = _currentPanelColor;
+            yield return null;
+        }
+    }
+
+    #endregion Game Over
 }

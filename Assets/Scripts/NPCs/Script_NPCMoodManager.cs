@@ -6,21 +6,11 @@ using UnityEngine;
 
 namespace NPC
 {
-    public enum NPCMood
-    {
-        Neutral,
-        Suspicious1,
-        Suspicious2,
-        Suspicious3,
-        Angry1,
-        Angry2,
-        Angry3,
-        GameOver
-    }
-
     [RequireComponent(typeof(SpriteRenderer))]
     public class Script_NPCMoodManager : MonoBehaviour
     {
+        private GameManager _gameManager;
+
         [Header("Mood Sprites")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Sprite[] _moods;
@@ -51,6 +41,8 @@ namespace NPC
 
         private void Start()
         {
+            _gameManager = GameManager._instance;
+
             numMoods = _moods.Length;
             _currentMood = 0;
             _justAlteredSus = false;
@@ -86,7 +78,7 @@ namespace NPC
             if (_currentMood == numMoods)
             {
                 _spriteRenderer.sprite = _moods[numMoods - 1];
-                Debug.Log("Game Over");
+                _gameManager.GameOver();
             }
             else
             {

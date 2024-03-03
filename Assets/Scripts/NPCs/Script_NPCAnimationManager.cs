@@ -70,7 +70,6 @@ namespace NPC
         private void PlayMovementAnimations()
         {
             // Priorities direction of greater influence
-            Debug.Log($"NPC is moving is {_movementManager.IsMoving}");
             if (_movementManager.IsHorizontalGreater)
             {
                 if (_movementManager.IsWalkingRight)
