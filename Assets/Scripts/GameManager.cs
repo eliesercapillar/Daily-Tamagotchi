@@ -85,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     public void StopNPCWalk(Script_NPCMovementManager npc)
     {
-        Debug.Log("Killing Coroutine");
         StopCoroutine(_npcCoroutines[npc]);
         _npcCoroutines.Remove(npc);
     }

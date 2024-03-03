@@ -12,7 +12,7 @@ namespace NPC
         [Header("Managers")]
         private GameManager _gameManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
-        [SerializeField] private Script_NPCSusManager _susManager;
+        [SerializeField] private Script_NPCMoodManager _moodManager;
 
         [Header("NPC Components")]
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -20,8 +20,6 @@ namespace NPC
 
         [Header("NPC Properties")]
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _minIdleTime;
-        [SerializeField] private float _maxIdleTime; 
         [Tooltip("The chance that this NPC will randomly idle while on the path to the next waypoint.")]
         [SerializeField] private float _chanceToIdle = 0.3f;    // Default: No Idle 70% of the time, Idle 30% of the time
         [SerializeField] private bool _shouldIdle = false;
@@ -60,10 +58,6 @@ namespace NPC
                 _isMoving = false;
                 _animationManager.InteractAtWaypoint(other.gameObject);
             }
-            else
-            {
-                Debug.Log("NPC " + gameObject.name + " has hit waypoint: " + other.gameObject.name);
-            }
         }
 
         public IEnumerator StartPatrolling()
@@ -72,7 +66,6 @@ namespace NPC
             {
                 if (_waypointReached)
                 {
-                    Debug.Log("Getting new waypoint");
                     GetNewWaypoint();
                 }
                 yield return TraversePath();
@@ -89,14 +82,13 @@ namespace NPC
             _currentWaypoint = newWaypoint;
             _waypointReached = false;
             _pathToWaypoint = AStar.FindPath(_gameManager.Tilemap, transform.position, _currentWaypoint.transform.position);
-            float chance = UnityEngine.Random.value;
-            _shouldIdle = chance <= _chanceToIdle;
+            _shouldIdle = UnityEngine.Random.value <= _chanceToIdle;
 
         }
 
         private IEnumerator TraversePath()
         {
-            int randomIndex = UnityEngine.Random.Range(_pathToWaypoint.Count * 2 / 4, _pathToWaypoint.Count * 3 / 4);
+            int randomIndex = UnityEngine.Random.Range(_pathToWaypoint.Count / 3, _pathToWaypoint.Count * 2 / 3);
             int count = 0;
             foreach (Vector3 destination in _pathToWaypoint)
             {
@@ -109,7 +101,7 @@ namespace NPC
         private IEnumerator PerformRandomIdle()
         {
             //_animationManager.PlayAnimation(NPCState.Idle_Book);
-            yield return _animationManager.RandomlyIdle(NPCState.Idle_Phone, _minIdleTime, _maxIdleTime);
+            yield return _animationManager.RandomlyIdle(NPCState.Idle_Phone);
             _shouldIdle = false;
         }
 
@@ -119,11 +111,18 @@ namespace NPC
             while (distance > 0.05)
             {
                 if (_waypointReached) break;
+                if (_moodManager.IsInLOS) 
+                {
+                    _isMoving = false;
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, destination, _moveSpeed * Time.deltaTime);
+                    distance = Vector3.Distance(transform.position, destination);
+                    _isMoving = true;   
+                    SetDirectionVariables(transform.position, destination);
+                }
 
-                transform.position = Vector3.MoveTowards(transform.position, destination, _moveSpeed * Time.deltaTime);
-                distance = Vector3.Distance(transform.position, destination);
-                SetDirectionVariables(transform.position, destination);
-                _isMoving = true;
                 yield return null;
             }
         }

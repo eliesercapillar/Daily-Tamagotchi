@@ -7,11 +7,12 @@ namespace NPC
     public class Script_NPCLineOfSight : MonoBehaviour
     {
         [Header("Managers")]
-        [SerializeField] private Script_NPCSusManager _susManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
+        [SerializeField] private Script_NPCMoodManager _moodManager;
 
         [Header("Player")]
         [SerializeField] private GameObject _player;
+        [SerializeField] private LayerMask _playerHitboxLayerMask;
 
         [Header("Components")]
         [SerializeField] private MeshFilter _meshFilter;
@@ -23,72 +24,80 @@ namespace NPC
         private float _startingAngle;
         private Vector3 _lookDirection;
         [SerializeField] private float _fov;
-        [SerializeField] private int _numRays;
+        [SerializeField] private int _numLOSRays;
         [SerializeField] private LayerMask _layerMask;
-        [SerializeField] private float _minViewDistance;
-        [SerializeField] private float _maxViewDistance;
+        [SerializeField] private float _minLOSViewDistance;
+        [SerializeField] private float _maxLOSViewDistance;
         private float _currViewDistance;
 
         private bool _isShrinking = false;
         private bool _isExpanding = false;
 
-
+        // Getters / Setters
         public float FOV             {set {_fov = value;}}
-        public float MinViewDistance {set {_minViewDistance = value;}}
-        public float MaxViewDistance {set {_maxViewDistance = value;}}
+        public float MinViewDistance {set {_minLOSViewDistance = value;}}
+        public float MaxViewDistance {set {_maxLOSViewDistance = value;}}
     
         private void Start()
         {
-            _currViewDistance = _maxViewDistance;
-        }
-
-        private void Update()
-        {
-            PollForPlayerInFOV();
+            _currViewDistance = _maxLOSViewDistance;
+            _meshVertices = new Vector3[_numLOSRays + 2];
+            _meshUV = new Vector2[_numLOSRays + 2];
+            _meshTriangles = new int[_numLOSRays * 3];
         }
 
         private void LateUpdate()
         {
             DrawFOVMesh();
+            PollForPlayerInFOV();
         }
 
         private void PollForPlayerInFOV()
         {
             float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-            if (distanceToPlayer > _currViewDistance) return;
+            if (distanceToPlayer > _currViewDistance)
+            {
+                _moodManager.IsInLOS = false;
+                return;   
+            }
+            //Debug.Log("Within currViewDistance");
 
             Vector3 playerDirection = (_player.transform.position - transform.position).normalized;
             float angle = Vector3.Angle(_lookDirection, playerDirection);
-            if (angle > _fov / 2f) return;
-            
-            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, playerDirection, _currViewDistance);
-            if (rayHit.collider == null) return;
-
-            if (rayHit.collider.tag == "")
+            if (angle > _fov / 2f)
             {
-                _susManager.IsSus = true;
+                _moodManager.IsInLOS = false;
+                return;   
             }
-            else
+            //Debug.Log("Within Angle");
+            
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, playerDirection, _currViewDistance, _playerHitboxLayerMask);
+            if (rayHit.collider == null)
             {
-                _susManager.IsSus = false;
+                _moodManager.IsInLOS = false;
+                return;   
+            }
+            //Debug.Log($"Ray hit something! It was {rayHit.collider.gameObject.name}");
+
+            if (rayHit.collider.tag == "TAG_Player")
+            {
+                _moodManager.IsInLOS = true;
             }
 
         }
 
         private void DrawFOVMesh()
         {
+            // Draw LOS Mesh
             float currentAngle = _startingAngle;
-            float angleIncrement = _fov / _numRays;
-
-            _meshVertices = new Vector3[_numRays + 1 + 1];
-            _meshUV = new Vector2[_numRays + 1 + 1];
-            _meshTriangles = new int[_numRays * 3];
+            float angleIncrement = _fov / _numLOSRays;
 
             _meshVertices[0] = Vector3.zero;
 
             int vertexIndex = 1;
             int triangleIndex = 0;
-            for (int i = 0; i <= _numRays; i++)
+
+            for (int i = 0; i <= _numLOSRays; i++)
             {
                 Vector3 vertex;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, FloatToVectorAngle(currentAngle), _currViewDistance, _layerMask);
@@ -101,12 +110,6 @@ namespace NPC
                 else if (hit.collider.tag == "TAG_Obstacle")
                 {
                     //Debug.DrawRay(transform.position, FloatToVectorAngle(currentAngle) * _viewDistance, Color.red);
-                    float distanceToHit = Vector2.Distance(hit.point, transform.position);
-                    vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * distanceToHit;
-                }
-                else if (hit.collider.tag == "TAG_PlayerHitbox")
-                {
-                    _susManager.IncrementSUS();
                     float distanceToHit = Vector2.Distance(hit.point, transform.position);
                     vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * distanceToHit;
                 }
@@ -128,12 +131,21 @@ namespace NPC
                 currentAngle -= angleIncrement; // Clockwise
             }
 
-            _meshFilter.mesh = new Mesh
+            if (_meshFilter.mesh == null)
             {
-                vertices = _meshVertices,
-                uv = _meshUV,
-                triangles = _meshTriangles
-            };;
+                _meshFilter.mesh = new Mesh
+                {
+                    vertices = _meshVertices,
+                    uv = _meshUV,
+                    triangles = _meshTriangles
+                };
+            }
+            else
+            {
+                _meshFilter.mesh.vertices = _meshVertices;
+                _meshFilter.mesh.uv = _meshUV;
+                _meshFilter.mesh.triangles = _meshTriangles;
+            }
         }
 
         private Vector3 FloatToVectorAngle(float angle)
@@ -163,10 +175,9 @@ namespace NPC
             IEnumerator Shrink()
             {
                 _isShrinking = true;
-                while (_currViewDistance > _minViewDistance)
+                while (_currViewDistance > _minLOSViewDistance)
                 {
                     _currViewDistance--;
-                    //Debug.Log($"Shrinking currView, it is {_currViewDistance}");
                     yield return new WaitForSeconds(0.1f);
                 }
                 _isShrinking = false;
@@ -181,10 +192,9 @@ namespace NPC
             IEnumerator Expand()
             {
                 _isExpanding = true;
-                while (_currViewDistance < _maxViewDistance)
+                while (_currViewDistance < _maxLOSViewDistance)
                 {
                     _currViewDistance++;
-                    //Debug.Log($"Expanding currView, it is {_currViewDistance}");
                     yield return new WaitForSeconds(0.1f);
                 }
                 _isExpanding = false;

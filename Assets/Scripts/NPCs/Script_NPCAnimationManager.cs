@@ -25,7 +25,6 @@ namespace NPC
     {
         [Header("Managers")]
         [SerializeField] private GameManager _gameManager; 
-        [SerializeField] private Script_NPCSusManager _susManager;
         [SerializeField] private Script_NPCMovementManager _movementManager;
 
         [Header("Components")]
@@ -38,45 +37,52 @@ namespace NPC
         [Header("Interactions")]
         [SerializeField] private float _minInteractTime;
         [SerializeField] private float _maxInteractTime;
-        Waypoint _waypointProperties = null;
+        private WaitForSeconds _interactWaitTime;
+        private Waypoint _waypointProperties = null;
+        private bool _isInteracting;
+
+        [Header("Idling")]
+        [SerializeField] private float _minIdleTime;
+        [SerializeField] private float _maxIdleTime;
+        private WaitForSeconds _idleWaitTime;
 
         // State
         private NPCState _currentState = NPCState.Idle_Down;
         private bool _isRandomIdling = false;
 
-
-
         // Start is called before the first frame update
         void Start()
         {
             _gameManager = GameManager._instance;
+            _interactWaitTime = new WaitForSeconds(UnityEngine.Random.Range(_minInteractTime, _maxInteractTime));
+            _idleWaitTime = new WaitForSeconds(UnityEngine.Random.Range(_minIdleTime, _maxIdleTime));
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!_isRandomIdling)
+            if (!_isRandomIdling && !_isInteracting)
             {
-                if (_movementManager.IsMoving) PlayMovementAnimations();
-                else PlayIdleAnimations();
+                PlayMovementAnimations();
             }
         }
 
         private void PlayMovementAnimations()
         {
             // Priorities direction of greater influence
+            Debug.Log($"NPC is moving is {_movementManager.IsMoving}");
             if (_movementManager.IsHorizontalGreater)
             {
                 if (_movementManager.IsWalkingRight)
                 {
-                    PlayAnimation(NPCState.Walk_Right);
-                    Debug.Log("Setting Ray Direction Right");
+                    if (_movementManager.IsMoving) PlayAnimation(NPCState.Walk_Right);
+                    else                           PlayAnimation(NPCState.Idle_Right);
                     _los.SetRayDirection(Vector3.right);
                 }
                 else
                 {
-                    PlayAnimation(NPCState.Walk_Left);
-                    Debug.Log("Setting Ray Direction Left");
+                    if (_movementManager.IsMoving) PlayAnimation(NPCState.Walk_Left);
+                    else                           PlayAnimation(NPCState.Idle_Left);
                     _los.SetRayDirection(Vector3.left);
                 }
             }
@@ -84,22 +90,72 @@ namespace NPC
             {
                 if (_movementManager.IsWalkingUp)
                 {
-                    PlayAnimation(NPCState.Walk_Up);
-                    Debug.Log("Setting Ray Direction Up");
+                    if (_movementManager.IsMoving) PlayAnimation(NPCState.Walk_Up);
+                    else                           PlayAnimation(NPCState.Idle_Up);
                     _los.SetRayDirection(Vector3.up);
                 }
                 else
                 {
                     PlayAnimation(NPCState.Walk_Down);
-                    Debug.Log("Setting Ray Direction Down");
+                    if (_movementManager.IsMoving) PlayAnimation(NPCState.Walk_Down);
+                    else                           PlayAnimation(NPCState.Idle_Down);
                     _los.SetRayDirection(Vector3.down);
                 }
             }
         }
 
-        private void PlayIdleAnimations()
+        public IEnumerator RandomlyIdle(NPCState behaviour)
         {
-            switch (_waypointProperties.NPCBehaviour)
+            _isRandomIdling = true;
+            _los.SetRayDirection(Vector3.down);
+            PlayAnimation(behaviour);
+
+            _los.ShrinkLOS();
+
+            bool waitForIdle = true;
+            while (waitForIdle)
+            {
+                yield return _idleWaitTime;
+                waitForIdle = false;
+                _isRandomIdling = false;
+            }
+            _los.ExpandLOS();
+        }
+
+        public void PlayAnimation(NPCState toState)
+        {
+            if (toState == _currentState) return;
+
+            _animator.Play(_animationNames[(int) toState], 0);
+            _currentState = toState;
+        }
+
+        public void InteractAtWaypoint(GameObject waypoint)
+        {
+            _isInteracting = true;
+            _waypointProperties = waypoint.GetComponent<Waypoint>();
+
+            PlayWaypointAnimations(_waypointProperties.NPCBehaviour);
+            StartCoroutine(HoldPosition());
+            if (_waypointProperties.ShouldInteract)
+            {
+                _los.ShrinkLOS();
+            }
+
+            _isInteracting = false;
+
+            IEnumerator HoldPosition()
+            {
+                yield return _interactWaitTime;
+                
+                _gameManager.LetNPCWalk(_movementManager);
+                if (_waypointProperties.ShouldInteract) _los.ExpandLOS();
+            }
+        }
+
+        private void PlayWaypointAnimations(NPCState behaviour)
+        {
+            switch (behaviour)
             {
                 case NPCState.Idle_Up:
                     _los.SetRayDirection(Vector3.up);
@@ -120,52 +176,7 @@ namespace NPC
                     _los.SetRayDirection(Vector3.down);
                     break;
             }
-            PlayAnimation(_waypointProperties.NPCBehaviour);
-        }
-
-        public IEnumerator RandomlyIdle(NPCState behaviour, float minIdleTime, float maxIdleTime)
-        {
-            _isRandomIdling = true;
-            _los.SetRayDirection(Vector3.down);
             PlayAnimation(behaviour);
-
-            _los.ShrinkLOS();
-
-            bool waitForIdle = true;
-            while (waitForIdle)
-            {
-                yield return new WaitForSeconds(UnityEngine.Random.Range(minIdleTime, maxIdleTime));
-                waitForIdle = false;
-                _isRandomIdling = false;
-            }
-            _los.ExpandLOS();
-        }
-
-        public void PlayAnimation(NPCState toState)
-        {
-            if (toState == _currentState) return;
-
-            //Debug.Log("State " + toState + " resolves to " + (int) toState);
-            _animator.Play(_animationNames[(int) toState], 0);
-            _currentState = toState;
-        }
-
-        public void InteractAtWaypoint(GameObject waypoint)
-        {
-            _waypointProperties = waypoint.GetComponent<Waypoint>();
-            StartCoroutine(HoldPosition());
-            if (_waypointProperties.ShouldInteract)
-            {
-                _los.ShrinkLOS();
-            }
-
-            IEnumerator HoldPosition()
-            {
-                yield return new WaitForSeconds(UnityEngine.Random.Range(_minInteractTime, _maxInteractTime));
-                
-                _gameManager.LetNPCWalk(_movementManager);
-                if (_waypointProperties.ShouldInteract) _los.ExpandLOS();
-            }
         }
     }
 }

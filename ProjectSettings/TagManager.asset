@@ -5,14 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - TAG_Attackable
-  - TAG_PlayerHitbox
-  - TAG_PlayerAttackHitbox
   - TAG_Obstacle
-  - TAG_PlayerTransformedHitbox
-  - TAG_PlayerNormalTerrainHitbox
-  - TAG_PlayerTransformedTerrainHitbox
-  - TAG_PlayerNormalNPCHitbox
-  - TAG_PlayerTransformedNPCHitbox
+  - TAG_Player&NPC
+  - TAG_Player
+  - TAG_NPC
   layers:
   - Default
   - TransparentFX
@@ -24,17 +20,17 @@ TagManager:
   - Terrain
   - Player
   - NPC
-  - Player&Terrain
+  - 
   - Player&NPC
   - Aura
   - 
+  - Unwalkable
+  - Accessories
+  - Obstacles
+  - Wall
+  - Floor
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Waypoint
   - 
   - 
   - 
