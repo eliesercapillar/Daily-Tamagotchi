@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toolbox;
 using System;
+using NPC;
 
-namespace NPC
+namespace MainMenu
 {
-    public class Script_NPCMovementManager : MonoBehaviour
+    public class NPCWander : MonoBehaviour
     {
         [Header("Managers")]
         private GameManager _gameManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
-        [SerializeField] private Script_NPCMoodManager _moodManager;
-
-        [Header("NPC Components")]
-        [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private Script_NPCLineOfSight _los;
 
         [Header("NPC Properties")]
         [SerializeField] private float _moveSpeed;
-        [Tooltip("The chance that this NPC will randomly idle while on the path to the next waypoint.")]
-        [SerializeField] private float _chanceToIdle = 0.3f;    // Default: No Idle 70% of the time, Idle 30% of the time
-        [SerializeField] private bool _shouldIdle = false;
 
         [Header("Pathfinding")]
         [SerializeField] private List<GameObject> _waypoints;   // A list of key waypoints this NPC will go to.
@@ -81,27 +74,14 @@ namespace NPC
             _currentWaypoint = newWaypoint;
             _waypointReached = false;
             _pathToWaypoint = AStar.FindPath(_gameManager.Tilemap, transform.position, _currentWaypoint.transform.position);
-            _shouldIdle = UnityEngine.Random.value <= _chanceToIdle;
-
         }
 
         private IEnumerator TraversePath()
         {
-            int randomIndex = UnityEngine.Random.Range(_pathToWaypoint.Count / 3, _pathToWaypoint.Count * 2 / 3);
-            int count = 0;
             foreach (Vector3 destination in _pathToWaypoint)
             {
-                if (count == randomIndex && _shouldIdle) yield return PerformRandomIdle();
                 yield return MoveToWaypoint(destination);
-                count++;
             }
-        }
-
-        private IEnumerator PerformRandomIdle()
-        {
-            //_animationManager.PlayAnimation(NPCState.Idle_Book);
-            yield return _animationManager.RandomlyIdle(NPCState.Idle_Phone);
-            _shouldIdle = false;
         }
 
         private IEnumerator MoveToWaypoint(Vector3 destination)
@@ -110,18 +90,10 @@ namespace NPC
             while (distance > 0.05)
             {
                 if (_waypointReached) break;
-                if (_moodManager.IsInLOS) 
-                {
-                    _isMoving = false;
-                }
-                else
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, destination, _moveSpeed * Time.deltaTime);
-                    distance = Vector3.Distance(transform.position, destination);
-                    _isMoving = true;   
-                    SetDirectionVariables(transform.position, destination);
-                }
-
+                transform.position = Vector3.MoveTowards(transform.position, destination, _moveSpeed * Time.deltaTime);
+                distance = Vector3.Distance(transform.position, destination);
+                _isMoving = true;   
+                SetDirectionVariables(transform.position, destination);
                 yield return null;
             }
         }
