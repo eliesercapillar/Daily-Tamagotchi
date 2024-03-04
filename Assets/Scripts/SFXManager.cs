@@ -19,7 +19,7 @@ public class SFXManager : MonoBehaviour, IAudioManager
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        SetVolumeLevel(0.5f);
+        //SetVolumeLevel(0.5f);
     }
 
     public float GetVolumeLevel()
@@ -36,5 +36,11 @@ public class SFXManager : MonoBehaviour, IAudioManager
     {
         isMuted = !isMuted;
         _audioSource.mute = isMuted;
+    }
+
+    public void PlayAudio(AudioClip clip)
+    {
+        Debug.Log($"Playing clip {clip}");
+        _audioSource.PlayOneShot(clip);
     }
 }

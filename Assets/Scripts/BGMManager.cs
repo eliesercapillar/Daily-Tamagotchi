@@ -19,7 +19,7 @@ public class BGMManager : MonoBehaviour, IAudioManager
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        SetVolumeLevel(0.5f);
+        //SetVolumeLevel(0.5f);
     }
 
     public float GetVolumeLevel()
