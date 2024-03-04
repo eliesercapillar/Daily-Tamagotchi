@@ -80,6 +80,11 @@ public class GameOverManager : MonoBehaviour
         }
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Scene_MainMenu");
+    }
+
     public void RestartGame()
     {
         StartCoroutine(Restart());

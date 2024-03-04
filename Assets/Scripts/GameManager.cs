@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
     {
         yield return ZoomCamera();
         yield return BlackOutScreen();
-        SceneManager.LoadScene("Game Over Scene");
+        SceneManager.LoadScene("Scene_GameOver");
     }
 
     private IEnumerator ZoomCamera()

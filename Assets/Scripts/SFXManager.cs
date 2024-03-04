@@ -2,40 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class SFXManager : MonoBehaviour, IAudioManager
 {
+    public static SFXManager _instance;
+    private bool isMuted = false;
+
     [Header("Components")]
     [SerializeField] private AudioSource _audioSource;
 
-
-
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
-
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        SetVolumeLevel(0.5f);
     }
 
-    private void Start()
+    public float GetVolumeLevel()
     {
-        ChangeAudioVolume(0.5f);
+        return _audioSource.volume;
     }
 
-    private void Update()
-    {
-        
-    }
-
-    public void ChangeAudioVolume(float volume)
+    public void SetVolumeLevel(float volume)
     {
         _audioSource.volume = volume;
+    }
+
+    public void FlipMute()
+    {
+        isMuted = !isMuted;
+        _audioSource.mute = isMuted;
     }
 }
