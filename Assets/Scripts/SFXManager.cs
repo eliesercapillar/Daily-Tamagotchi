@@ -19,7 +19,6 @@ public class SFXManager : MonoBehaviour, IAudioManager
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        //SetVolumeLevel(0.5f);
     }
 
     public float GetVolumeLevel()

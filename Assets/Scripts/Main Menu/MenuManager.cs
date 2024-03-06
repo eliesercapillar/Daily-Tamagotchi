@@ -9,9 +9,11 @@ public class MenuManager : MonoBehaviour
 {
     [Header("Canvas Elements")]
     [SerializeField] private RectTransform _optionsMenu;
-    [SerializeField] private Vector2 _optionsFromPos;
-    [SerializeField] private Vector2 _optionsToPos;
     [SerializeField] private float _optionsTweenTime;
+    [SerializeField] private GameObject _optionsPanel;
+    [SerializeField] private GameObject _instructionsPanel;
+    [SerializeField] private Image _blackOutPanel;
+    [SerializeField] private float _fadeTime;
 
     [Header("Buttons")]
     [SerializeField] private List<Button> _menuButtons;
@@ -45,7 +47,15 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Scene_Game");
+        StartCoroutine(TweenFade());
+
+        IEnumerator TweenFade()
+        {
+            _blackOutPanel.gameObject.SetActive(true);
+            _blackOutPanel.DOFade(1, _fadeTime);
+            yield return new WaitForSeconds(_fadeTime);
+            SceneManager.LoadScene("Scene_Game");
+        }
     }
 
     public void ShowOptionsMenu()
@@ -55,35 +65,58 @@ public class MenuManager : MonoBehaviour
         {
             button.enabled = false;
         }
-
-        StartCoroutine(TweenOptions());
-
-        IEnumerator TweenOptions()
-        {
-            _optionsMenu.gameObject.SetActive(true);
-            _optionsMenu.DOScaleX(1, _optionsTweenTime);
-            yield return new WaitForSeconds(_optionsTweenTime);
-            _optionsMenu.DOScaleY(1, _optionsTweenTime);
-        }
+        StartCoroutine(TweenOpenPanel());
+        _optionsPanel.SetActive(true);
     }
 
     public void CloseOptionsMenu()
     {
         Debug.Log("Closing Options Menu");
-        StartCoroutine(TweenOptions());
+        StartCoroutine(TweenClosePanel());
+        _optionsPanel.SetActive(false);
         foreach (Button button in _menuButtons)
         {
             button.enabled = true;
         }
+    }
 
-        IEnumerator TweenOptions()
+    public void ShowInstructionsMenu()
+    {
+        Debug.Log("Showing Instructions");
+        foreach (Button button in _menuButtons)
         {
-            _optionsMenu.DOScaleY(0.01f, _optionsTweenTime);
-            yield return new WaitForSeconds(_optionsTweenTime);
-            _optionsMenu.DOScaleX(0.01f, _optionsTweenTime);
-            yield return new WaitForSeconds(_optionsTweenTime);
-            _optionsMenu.gameObject.SetActive(false);
+            button.enabled = false;
         }
+        StartCoroutine(TweenOpenPanel());
+        _instructionsPanel.SetActive(true);
+    }
+
+    public void CloseInstructionsMenu()
+    {
+        Debug.Log("Closing Instructions");
+        StartCoroutine(TweenClosePanel());
+        _instructionsPanel.SetActive(false);
+        foreach (Button button in _menuButtons)
+        {
+            button.enabled = true;
+        }
+    }
+
+    private IEnumerator TweenOpenPanel()
+    {
+        _optionsMenu.gameObject.SetActive(true);
+        _optionsMenu.DOScaleX(1, _optionsTweenTime);
+        yield return new WaitForSeconds(_optionsTweenTime);
+        _optionsMenu.DOScaleY(1, _optionsTweenTime);
+    }
+
+    private IEnumerator TweenClosePanel()
+    {
+        _optionsMenu.DOScaleY(0.01f, _optionsTweenTime);
+        yield return new WaitForSeconds(_optionsTweenTime);
+        _optionsMenu.DOScaleX(0.01f, _optionsTweenTime);
+        yield return new WaitForSeconds(_optionsTweenTime);
+        _optionsMenu.gameObject.SetActive(false);
     }
 
     public void MuteBGM()
