@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 namespace NPC
 {
@@ -100,23 +101,23 @@ namespace NPC
             for (int i = 0; i <= _numLOSRays; i++)
             {
                 Vector3 vertex;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, FloatToVectorAngle(currentAngle), _currViewDistance, _layerMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, HelperMethods.FloatToVectorAngle(currentAngle), _currViewDistance, _layerMask);
 
                 if (hit.collider == null) 
                 {
                     //Debug.DrawRay(transform.position, FloatToVectorAngle(currentAngle) * _viewDistance, Color.white);
-                    vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * _currViewDistance;
+                    vertex = Vector3.zero + HelperMethods.FloatToVectorAngle(currentAngle) * _currViewDistance;
                 }
                 else if (hit.collider.tag == "TAG_Obstacle")
                 {
                     //Debug.DrawRay(transform.position, FloatToVectorAngle(currentAngle) * _viewDistance, Color.red);
                     float distanceToHit = Vector2.Distance(hit.point, transform.position);
-                    vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * distanceToHit;
+                    vertex = Vector3.zero + HelperMethods.FloatToVectorAngle(currentAngle) * distanceToHit;
                 }
                 else
                 {
                     Debug.Log("Hit something but not obstacle. What was hit was: " + hit.collider.gameObject.name);
-                    vertex = Vector3.zero + FloatToVectorAngle(currentAngle) * _currViewDistance;
+                    vertex = Vector3.zero + HelperMethods.FloatToVectorAngle(currentAngle) * _currViewDistance;
                 }
                 _meshVertices[vertexIndex] = vertex;
 
@@ -148,23 +149,10 @@ namespace NPC
             }
         }
 
-        private Vector3 FloatToVectorAngle(float angle)
-        {
-            float rad = angle * (Mathf.PI/180f);
-            return new Vector3(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
-        }
-
-        private float VectorToFloatAngle(Vector3 direction)
-        {
-            float angle = Mathf.Atan2(direction.normalized.y, direction.normalized.x) * Mathf.Rad2Deg;
-            if (angle < 0) angle += 360;
-            return angle;
-        }
-
         public void SetRayDirection(Vector3 direction)
         {
             _lookDirection = direction;
-            _startingAngle = VectorToFloatAngle(direction) + _fov / 2;
+            _startingAngle = HelperMethods.VectorToFloatAngle(direction) + _fov / 2;
         }
 
         public void ShrinkLOS()

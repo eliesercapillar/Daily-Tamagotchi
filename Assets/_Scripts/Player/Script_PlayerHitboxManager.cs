@@ -9,10 +9,6 @@ namespace Player
     {
         #region Global Variables
 
-        private const int ATTACK_LAYER  = 6;
-        private const int TERRAIN_LAYER = 7;
-        private const int PLAYER_LAYER  = 8;
-
         [Header("Hitboxes")]
         [SerializeField] private Collider2D _playerNormalHitbox;
         [SerializeField] private Collider2D _playerStrongHitbox;
@@ -31,13 +27,6 @@ namespace Player
             _playerNormalHitbox.gameObject.SetActive(true);
             _playerStrongHitbox.gameObject.SetActive(false);
             _playerGigaHitbox.gameObject.SetActive(false);
-            SetupCollisionIgnores();
-        }
-
-        public void SetupCollisionIgnores()
-        {
-            //Physics2D.IgnoreLayerCollision(ATTACK_LAYER, TERRAIN_LAYER);
-            //Physics2D.IgnoreLayerCollision(ATTACK_LAYER, PLAYER_LAYER);
         }
 
         public void EnablePlayerHitbox(Transformation transformation)
@@ -58,12 +47,6 @@ namespace Player
                     _currentActiveHitbox = _playerGigaHitbox;
                     break;
             }
-        }
-
-        // This is a hacky way of moving the hitbox a bit to ensure that there is the change in the overlap of colliders needed to trigger OnTriggerEnter2D.
-        public void ShakeHitbox()
-        {
-            
         }
     }
 }

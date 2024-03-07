@@ -18,12 +18,6 @@ namespace Player
         [Header("Player Components")]
         [SerializeField] private Animator _playerAnimator;
 
-        [Space(5)]
-        [Header("Animation Properties")]
-        [SerializeField] private float _coffeeWaitTimeMin;
-        [SerializeField] private float _coffeeWaitTimeMax;
-        private bool _isWaitingForCoffee = false;
-
         // State Variables
         private bool _isTransforming;
         private bool _isAttacking;
@@ -34,115 +28,96 @@ namespace Player
         
         #endregion Global Variables
 
-        private void Start()
+        private void Awake()
         {
             if (_playerAnimator == null) _playerAnimator = GetComponent<Animator>();
         }
 
         private void Update()
         {
-            HandleInputs();
-            UpdateAnimations();
-        }
-
-        private void HandleInputs()
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (!_isTransforming) PlayTransformationAnimation();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                PlayAttackAnimation();
-            }
-        }
-
-        private void UpdateAnimations()
-        {   
-            PlayCoffeeIdleAnimation();
-            PlayWalkingAnimation();
+            if (_locomotionManager.IsMoving) PlayWalkingAnimation();
+            else                             PlayIdleAnimation();
         }
     
-        #region Animation Event Methods
-
-        // Called from the Animator twice during transfomation animation.
-        public void OnTransformationEvent(AnimationEvent animEvent)
-        {
-            _isTransforming = animEvent.intParameter == 1;
-            string currentState = animEvent.stringParameter;
-
-            _actionsManager.UpdateCurrentState(currentState);
-            _hitboxManager.EnablePlayerHitbox(_actionsManager.CurrentState);
-        }
-
-        // Called from the Animator during the hit frame of the an attack
-        public void OnAttackEvent(AnimationEvent animEvent)
-        {
-            int damage = animEvent.intParameter;
-            // Force Strengths that feel pretty good:
-            // 3, 3, 5
-            // 3, 2, 3.5
-            float forceStrength = animEvent.floatParameter;
-
-            _isAttacking = animEvent.stringParameter == "";
-            _locomotionManager.ApplyForce(forceStrength);
-            _actionsManager.AttackEnemy(damage);
-            _hitboxManager.ShakeHitbox(); 
-
-        }
-
-        public void OnAttackStartEvent(AnimationEvent animEvent)
-        {
-            _isAttacking = animEvent.stringParameter == "";
-            _locomotionManager.HaltVelocity();
-        }
-
-        #endregion Animation Event Methods
-
         #region Play Animation Methods
 
-        public void PlayCoffeeIdleAnimation()
-        {
-            bool isNormal = _actionsManager.CurrentState == Transformation.Normal;
-
-            if (isNormal && !_isWaitingForCoffee) StartCoroutine(WaitForCoffee());
-            IEnumerator WaitForCoffee()
-            {
-                _isWaitingForCoffee = true;
-                yield return new WaitForSeconds(Random.Range(_coffeeWaitTimeMin, _coffeeWaitTimeMax));
-
-                if (isNormal) _playerAnimator.SetTrigger("DrinkCoffee");
-                _isWaitingForCoffee = false;
-            }
-        }
-    
         public void PlayWalkingAnimation()
         {
-            _playerAnimator.SetBool("IsMoving", _locomotionManager.IsMoving);
+            switch (_actionsManager.CurrentState)
+            {
+                case Transformation.Normal:
+                    PlayAnimation("Normal Walk");
+                    break;
+                case Transformation.Strong:
+                    PlayAnimation("Strong Walk");
+                    break;
+                case Transformation.Gigachad:
+                    PlayAnimation("Giga Walk");
+                    break;  
+            }
         }
-   
+
+        public void PlayIdleAnimation()
+        {
+            switch (_actionsManager.CurrentState)
+            {
+                case Transformation.Normal:
+                    PlayAnimation("Normal Idle");
+                    break;
+                case Transformation.Strong:
+                    PlayAnimation("Strong Idle");
+                    break;
+                case Transformation.Gigachad:
+                    PlayAnimation("Giga Idle");
+                    break;  
+            }
+        }
+ 
         public void PlayTransformationAnimation()
         {
             switch (_actionsManager.CurrentState)
             {
                 case Transformation.Normal:
-                    if (_actionsManager.IsEnraged) { _playerAnimator.SetTrigger("GIGATransform");   }
-                    else                           { _playerAnimator.SetTrigger("StrongTransform"); }
+                    if (_actionsManager.IsEnraged) 
+                    {
+                        PlayAnimation("Normal Transform Giga");
+                        _hitboxManager.EnablePlayerHitbox(Transformation.Gigachad);
+                    }
+                    else
+                    {
+                        PlayAnimation("Normal Transform Strong");
+                        _hitboxManager.EnablePlayerHitbox(Transformation.Strong);
+                    }
                     break;
                 case Transformation.Strong:
-                    _playerAnimator.SetTrigger("RevertTransform");
+                    PlayAnimation("Strong Transform Normal");
+                    _hitboxManager.EnablePlayerHitbox(Transformation.Normal);
                     break;
                 case Transformation.Gigachad:
-                    _playerAnimator.SetTrigger("RevertTransform");
+                    PlayAnimation("Giga Transform Normal");
+                    _hitboxManager.EnablePlayerHitbox(Transformation.Normal);
                     break;
             }
         }
     
         public void PlayAttackAnimation()
         {
-            bool isNormal = _actionsManager.CurrentState == Transformation.Normal;
-            if (!isNormal)  _playerAnimator.SetTrigger("IsAttacking");
+            switch (_actionsManager.CurrentState)
+            {
+                case Transformation.Normal:
+                    break;
+                case Transformation.Strong:
+                    PlayAnimation("Strong Attack");
+                    break;
+                case Transformation.Gigachad:
+                    PlayAnimation("Giga Attack");
+                    break;
+            }
+        }
+
+        public void PlayAnimation(string clipName)
+        {
+            _playerAnimator.Play(clipName, 0);
         }
     
         #endregion Play Animation Methods

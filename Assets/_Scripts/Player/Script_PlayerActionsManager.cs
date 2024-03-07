@@ -6,13 +6,6 @@ using UnityEngine.UI;
 
 namespace Player
 {
-    public enum Transformation
-    {
-        Normal,
-        Strong,
-        Gigachad
-    }
-
     public class Script_PlayerActionsManager : MonoBehaviour
     {
         #region Global Variables
@@ -27,12 +20,6 @@ namespace Player
         [SerializeField] private float _rageWaitTimeSeconds;
         [SerializeField] private float _passiveRageIncrementAmount;
         [SerializeField] private float _passiveRageDecrementAmount;
-
-        [Space(5)]
-        [Header("Character Properties")]
-        [SerializeField] private BoxCollider2D _playerHitbox;
-        [SerializeField] private BoxCollider2D _playerStrongAttackHitbox;
-        [SerializeField] private BoxCollider2D _playerGigaAttackHitbox;
 
         [Space(5)]
         [Header("Canvas Elements")]
@@ -124,16 +111,6 @@ namespace Player
                     break;
             }
             _locomotionManager.UpdateMovementSpeed(_currentState);
-        }
-
-        public void AttackEnemy(int damage)
-        {
-            
-        }
-
-        private void TestCollision()
-        {
-
         }
     }
 }
