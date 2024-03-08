@@ -125,6 +125,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GameOverSuccess()
+    {
+        Debug.Log("WOOHOO GAME OVER");
+    }
+
     private void HaltAllNPCs()
     {
         foreach (var value in _npcCoroutines.Values.ToList())

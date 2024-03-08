@@ -13,13 +13,10 @@ public class WaypointIndicator : MonoBehaviour
     [SerializeField] private Image _pointerImage;
     [SerializeField] private Sprite _offScreenSprite;
     [SerializeField] private Sprite _onScreenSprite;
-    
-    
 
     void Start()
     {
         if (_pointerTransform == null) _pointerTransform = GetComponent<RectTransform>();
-        _targetPos = Player.Player._instance.CurrentWaypoint.transform.position;
     }
 
     void Update()
@@ -68,5 +65,10 @@ public class WaypointIndicator : MonoBehaviour
         float angle = HelperMethods.VectorToFloatAngle(direction);
 
         _pointerTransform.localEulerAngles = new Vector3(0,0, angle);
+    }
+
+    public void GetNewTarget(Vector3 target)
+    {
+        _targetPos = target;
     }
 }

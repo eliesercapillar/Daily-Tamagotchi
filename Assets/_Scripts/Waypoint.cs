@@ -20,7 +20,11 @@ public class Waypoint : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                Debug.Log($"Player: {other.gameObject.name} interacted with waypoint {gameObject.name}");
+                Player.Player player = other.GetComponentInParent<Player.Player>();
+                if (player.CurrentWaypoint == this)
+                {
+                    player.InteractAtWaypoint();
+                }
             }
         }
     }

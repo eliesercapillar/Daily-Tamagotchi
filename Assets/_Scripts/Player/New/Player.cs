@@ -15,6 +15,7 @@ namespace Player
     public class Player : MonoBehaviour
     {
         public static Player _instance;
+        [SerializeField] private WaypointIndicator _indicator;
 
         [SerializeField] private List<Waypoint> _waypoints;
         private Dictionary<Waypoint, TextMeshProUGUI> _waypointUIDict;
@@ -39,13 +40,13 @@ namespace Player
                 return;
             }
             _instance = this;
-            _waypointUIDict = new Dictionary<Waypoint, TextMeshProUGUI>();
-            InitializeTaskList();
-            GetNewWaypoint();
         }
 
         private void Start()
         {
+            _waypointUIDict = new Dictionary<Waypoint, TextMeshProUGUI>();
+            InitializeTaskList();
+            GetNewWaypoint();
         }
 
         private void InitializeTaskList()
@@ -61,6 +62,7 @@ namespace Player
         private void GetNewWaypoint()
         {
             _currentWaypoint = SelectRandomWaypoint();
+            _indicator.GetNewTarget(_currentWaypoint.transform.position);
         }
 
         private Waypoint SelectRandomWaypoint()
@@ -68,6 +70,14 @@ namespace Player
             _waypoints.RandomElement();
 
             return _waypoints.RandomElement();
+        }
+
+        public void InteractAtWaypoint()
+        {
+            _waypointUIDict[_currentWaypoint].color = _completedTaskColor;
+            _waypoints.Remove(_currentWaypoint);
+            if (_waypoints.Count > 0) GetNewWaypoint();
+            else GameManager._instance.GameOverSuccess();
         }
     }
 }

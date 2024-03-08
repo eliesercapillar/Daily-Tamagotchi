@@ -8719,7 +8719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406905174}
   - component: {fileID: 406905175}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Player Raycast Strong Hitbox
   m_TagString: TAG_Player
   m_Icon: {fileID: 0}
@@ -14260,7 +14260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115076237}
   - component: {fileID: 1115076238}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Player Raycast Normal Hitbox
   m_TagString: TAG_Player
   m_Icon: {fileID: 0}
@@ -14314,7 +14314,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.034677505, y: -0.3063197}
+  m_Offset: {x: -0.034677505, y: -0.07701349}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -14325,7 +14325,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.79899025, y: 0.74952984}
+  m_Size: {x: 0.79899025, y: 1.2081423}
   m_EdgeRadius: 0
 --- !u!1 &1138794229
 GameObject:
@@ -16195,7 +16195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1442699298}
   - component: {fileID: 1442699299}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Player Raycast Giga Hitbox
   m_TagString: TAG_Player
   m_Icon: {fileID: 0}
@@ -32020,6 +32020,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 4946053696815620139}
+    - target: {fileID: 118095647794730455, guid: 344ecdcfea68723479e86ffd8ddedd1c, type: 3}
+      propertyPath: _playerHitboxLayerMask.m_Bits
+      value: 204800
+      objectReference: {fileID: 0}
     - target: {fileID: 5497539838600642505, guid: 344ecdcfea68723479e86ffd8ddedd1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.62
@@ -32064,6 +32068,14 @@ PrefabInstance:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 1934729460}
+    - target: {fileID: 7585875712980220471, guid: 344ecdcfea68723479e86ffd8ddedd1c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585875712980220471, guid: 344ecdcfea68723479e86ffd8ddedd1c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -384166253
+      objectReference: {fileID: 0}
     - target: {fileID: 8044728662011692526, guid: 344ecdcfea68723479e86ffd8ddedd1c, type: 3}
       propertyPath: m_Name
       value: NPC Master
@@ -32156,6 +32168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67109efc68e34404eafba5a94fa82cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _indicator: {fileID: 1992664577}
   _waypoints:
   - {fileID: 1917481344}
   - {fileID: 487863904}

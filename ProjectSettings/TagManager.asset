@@ -9,6 +9,7 @@ TagManager:
   - TAG_Player&NPC
   - TAG_Player
   - TAG_NPC
+  - TAG_PlayerAttackHitbox
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - 
   - Player&NPC
   - Aura
-  - 
+  - LOS
   - Unwalkable
   - Accessories
   - Obstacles
