@@ -77,7 +77,7 @@ namespace NPC
             _currentMood = (int) Mathf.Floor(_currentSusAmount * numMoods / 100.0f);
             if (_currentMood == numMoods)
             {
-                _spriteRenderer.sprite = _moods[numMoods - 1];
+                _spriteRenderer.sprite = _moods[_currentMood - 1];
                 _gameManager.GameOver();
             }
             else

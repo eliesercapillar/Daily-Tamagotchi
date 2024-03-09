@@ -35,6 +35,7 @@ namespace Player
 
         // Getters/Setters
         public Transformation CurrentState { get { return _currentState; } }
+        public List<Waypoint> Waypoints { get { return _waypoints; } set { _waypoints = value; }}
         public Waypoint CurrentWaypoint    { get { return _currentWaypoint; } }
 
         private void Awake()

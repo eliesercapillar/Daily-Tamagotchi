@@ -45,6 +45,7 @@ namespace NPC
             _meshVertices = new Vector3[_numLOSRays + 2];
             _meshUV = new Vector2[_numLOSRays + 2];
             _meshTriangles = new int[_numLOSRays * 3];
+            if (_player == null) _player = GameObject.Find("Player");
         }
 
         private void FixedUpdate()
@@ -56,7 +57,8 @@ namespace NPC
         private void PollForPlayerInFOV()
         {
             float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-            if (distanceToPlayer > _currViewDistance)
+            // Subtract a small buffer to offset measuring from center of sprite
+            if (distanceToPlayer - 0.5f > _currViewDistance)
             {
                 _moodManager.IsInLOS = false;
                 return;   

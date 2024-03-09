@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
 
-    [Header("NPCs / Enemies")]
+    [Header("NPCs / Enemies / Player")]
+    [SerializeField] private Player.Player _player;
     [Tooltip("A list of NPC's the player must avoid.")]
     [SerializeField] private List<Script_NPCMovementManager> _npcs;
     private Dictionary<Script_NPCMovementManager, IEnumerator> _npcCoroutines;
@@ -21,11 +22,13 @@ public class GameManager : MonoBehaviour
     [Tooltip("A Tilemap only containing tiles where an NPC MAY NOT walk through.")]
     [SerializeField] private Tilemap _unwalkableTilemap;
     [Tooltip("A list of key waypoints NPC's may travel to.")]
-    [SerializeField] private List<GameObject> _waypoints;
-    [Tooltip("A list of key waypoints in the player office NPC's may travel to.")]
-    [SerializeField] private List<GameObject> _playerOfficeWaypoints;
+    [SerializeField] private List<GameObject> _NPCWaypoints;
     [Tooltip("A number of key waypoints an NPC will rotate between.")]
     [SerializeField] private int _numWaypoints;
+    [Tooltip("A list of key waypoints in the player can interact with.")]
+    [SerializeField] private List<GameObject> _playerWaypoints;
+    [Tooltip("A number of key waypoints the player will need to interact with.")]
+    [SerializeField] private int _numPlayerWaypoints;
 
     [Header("Game Over Settings")]
     [SerializeField] private Script_PlayerLocomotionManager _playerLocomotion;
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private float _zoomSpeed;
     private bool _endInProgress;
+
 
     public Tilemap Tilemap { get { return _unwalkableTilemap; } set { _unwalkableTilemap = value; }}
 
@@ -46,7 +50,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (_player == null) _player = Player.Player._instance;
         AssignNPCWaypoints();
+        AssignPlayerWaypoints();
         StartNPCBehaviour();
     }
 
@@ -59,19 +65,31 @@ public class GameManager : MonoBehaviour
     {
         foreach (Script_NPCMovementManager npc in _npcs)
         {
-            List<GameObject> waypoints = GetRandomWaypoints();
+            List<GameObject> waypoints = GetRandomWaypoints(_numWaypoints, _NPCWaypoints);
             npc.Waypoints = waypoints;
         }
     }
 
-    private List<GameObject> GetRandomWaypoints()
+    private void AssignPlayerWaypoints()
+    {
+        List<GameObject> waypointGO = GetRandomWaypoints(_numPlayerWaypoints, _playerWaypoints);
+        List<Waypoint> waypoints = new List<Waypoint>();
+
+        foreach (GameObject go in waypointGO)
+        {
+            waypoints.Add(go.GetComponent<Waypoint>());
+        }
+        _player.Waypoints = waypoints;
+    }
+
+    private List<GameObject> GetRandomWaypoints(int numWaypoints, IList<GameObject> waypointList)
     {
         List<GameObject> waypoints = new List<GameObject>();
         int count = 0;
         
-        while (count < _numWaypoints)
+        while (count < numWaypoints)
         {
-            GameObject waypoint = _waypoints.RandomElement();
+            GameObject waypoint = waypointList.RandomElement();
             if (!waypoints.Contains(waypoint))
             {
                 waypoints.Add(waypoint);
@@ -119,6 +137,7 @@ public class GameManager : MonoBehaviour
         if (!_endInProgress)
         {
             _endInProgress = true;
+            _playerLocomotion.HaltVelocity();
             _playerLocomotion.enabled = false;
             HaltAllNPCs();
             StartCoroutine(EndGame());

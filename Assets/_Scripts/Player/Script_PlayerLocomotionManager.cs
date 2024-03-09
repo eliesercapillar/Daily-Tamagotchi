@@ -117,6 +117,7 @@ namespace Player
         public void HaltVelocity()
         {
             _playerRB.velocity = Vector2.zero;
+            _isMoving = false;
         }
     }
 }

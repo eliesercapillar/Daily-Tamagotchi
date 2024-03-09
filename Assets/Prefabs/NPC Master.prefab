@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7615172757222300780}
   - component: {fileID: 7726050420384117832}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: NPC Hitbox Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   _numLOSRays: 50
   _layerMask:
     serializedVersion: 2
-    m_Bits: 131072
+    m_Bits: 196608
   _minLOSViewDistance: 0.2
   _maxLOSViewDistance: 5
 --- !u!33 &1589344595041670832
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 5599539470674208990}
   - component: {fileID: 981498984445574785}
   - component: {fileID: 3091561460265592094}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: NPC Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,6 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9adf527a9f8f4418b1ef200b11f28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _animationManager: {fileID: 5599539470674208990}
   _moodManager: {fileID: 3151167535040184096}
   _rigidbody: {fileID: 8923356363096637137}

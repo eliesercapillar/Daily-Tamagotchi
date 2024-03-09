@@ -10,7 +10,7 @@ namespace NPC
     public class Script_NPCMovementManager : MonoBehaviour
     {
         [Header("Managers")]
-        private GameManager _gameManager;
+        [SerializeField] private GameManager _gameManager;
         [SerializeField] private Script_NPCAnimationManager _animationManager;
         [SerializeField] private Script_NPCMoodManager _moodManager;
 
@@ -46,7 +46,8 @@ namespace NPC
 
         private void Start()
         {
-            _gameManager = GameManager._instance;
+            if (_gameManager == null) _gameManager = GameManager._instance;
+            //Debug.Log($"Game Manager is {_gameManager}");
         }
 
         private void OnTriggerEnter2D(Collider2D other)
