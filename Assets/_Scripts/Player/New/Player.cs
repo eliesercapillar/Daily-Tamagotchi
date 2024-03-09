@@ -77,7 +77,11 @@ namespace Player
             _waypointUIDict[_currentWaypoint].color = _completedTaskColor;
             _waypoints.Remove(_currentWaypoint);
             if (_waypoints.Count > 0) GetNewWaypoint();
-            else GameManager._instance.GameOverSuccess();
+            else 
+            {
+                _indicator.gameObject.SetActive(false);
+                GameManager._instance.GameOverSuccess();
+            }
         }
     }
 }
