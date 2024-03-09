@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toolbox;
 using System;
+using Unity.VisualScripting;
 
 namespace NPC
 {
@@ -91,7 +92,10 @@ namespace NPC
             int count = 0;
             foreach (Vector3 destination in _pathToWaypoint)
             {
-                if (count == randomIndex && _shouldIdle) yield return PerformRandomIdle();
+                if (count == randomIndex && _shouldIdle) 
+                {   
+                    if (Vector3.Distance(transform.position, _currentWaypoint.transform.position) >= 5) yield return PerformRandomIdle();
+                }
                 yield return MoveToWaypoint(destination);
                 count++;
             }
@@ -112,6 +116,7 @@ namespace NPC
                 if (_waypointReached) break;
                 if (_moodManager.IsInLOS) 
                 {
+                    // TODO: Fix stuttering when at edge of LOS.
                     _isMoving = false;
                 }
                 else

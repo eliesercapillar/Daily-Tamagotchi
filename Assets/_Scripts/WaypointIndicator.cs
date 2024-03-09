@@ -4,6 +4,8 @@ using Utilities;
 
 public class WaypointIndicator : MonoBehaviour
 {
+    public static WaypointIndicator _instance;
+
     [SerializeField] private Vector3 _targetPos;
     [SerializeField] private RectTransform _pointerTransform;
     [SerializeField] private Camera _uiCamera;
@@ -13,6 +15,16 @@ public class WaypointIndicator : MonoBehaviour
     [SerializeField] private Image _pointerImage;
     [SerializeField] private Sprite _offScreenSprite;
     [SerializeField] private Sprite _onScreenSprite;
+
+    private void Awake()
+    {
+        if (_instance != null) 
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+    }
 
     void Start()
     {

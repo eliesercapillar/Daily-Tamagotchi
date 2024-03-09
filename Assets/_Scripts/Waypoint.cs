@@ -7,8 +7,11 @@ using DG.Tweening;
 
 public class Waypoint : MonoBehaviour
 {
+    [Header("NPC Settings")]
     [SerializeField] private bool _shouldInteract = false;
     [SerializeField] private NPCState _npcBehaviour;
+
+    [Header("Waypoint Properties")]
     [SerializeField] private string _description;
 
     [Header("Progress Bar")]
@@ -16,13 +19,16 @@ public class Waypoint : MonoBehaviour
     [SerializeField] private Slider _progressBar;
     [SerializeField] private Image _progressBarBG;
     [SerializeField] private Image _progressBarFill;
-    [SerializeField] private float _progressIncrementAmount;
-    [SerializeField] private float _progressIncrementCD;
+    private float _progressIncrementAmount = 0.02f;
+    private float _progressCD = 0.2f;
+    private float _progressDecrementAmount = 0.04f;
     private WaitForSeconds _cooldown;
-    private bool _onCD;
+    private bool _onIncrementCD;
+    private bool _onDecrementCD;
 
     private Player.Player _player;
     private bool _playerInCollider;
+    private Image _indicatorImg;
 
     public bool ShouldInteract    { get { return _shouldInteract; } }
     public NPCState NPCBehaviour  { get { return _npcBehaviour; } }
@@ -39,36 +45,41 @@ public class Waypoint : MonoBehaviour
     private void Start()
     {
         _canvas.worldCamera = Camera.main;
-        _cooldown = new WaitForSeconds(_progressIncrementCD);
-        _onCD = false;
+        _cooldown = new WaitForSeconds(_progressCD);
+        _onIncrementCD = false;
+        _onDecrementCD = false;
         _playerInCollider = false;
         _player = Player.Player._instance;
+        _indicatorImg = WaypointIndicator._instance. GetComponent<Image>();
     }
 
     private void Update()
     {
         if (!_playerInCollider) return;
-
+        
         if (Input.GetKey(KeyCode.Space))
         {
             if (_player.CurrentWaypoint != this) return;
-            if (!_canvas.enabled) TurnOnOffProgressBar(true);
-            if (_onCD) return;
+            if (_onIncrementCD) return;
             StartCoroutine(IncrementProgressBar());
             if (_progressBar.value >= 1f) 
             {
+                _indicatorImg.DOFade(1, 0.5f);
                 TurnOnOffProgressBar(false);
                 _player.InteractAtWaypoint();
             }
         }
+        else if (!_onDecrementCD) StartCoroutine(DecrementProgressBar());
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "TAG_Player")
         {
             if (_player.CurrentWaypoint != this) return;
             _playerInCollider = true;
+            _indicatorImg.DOFade(0, 0.5f);
+            TurnOnOffProgressBar(true);
         }
     }
 
@@ -78,6 +89,7 @@ public class Waypoint : MonoBehaviour
         {
             if (_player.CurrentWaypoint != this) return;
             _playerInCollider = false;
+            _indicatorImg.DOFade(1, 0.5f);
             if (_progressBar.value < 1f) 
             {
                 TurnOnOffProgressBar(false);
@@ -87,12 +99,11 @@ public class Waypoint : MonoBehaviour
 
     private void TurnOnOffProgressBar(bool turnOn)
     {
-        if (turnOn) _canvas.enabled = turnOn;
-        StartCoroutine(FadeProgressBar(turnOn));
+        StartCoroutine(FadeProgressBar());
 
-        IEnumerator FadeProgressBar(bool fadeIn)
+        IEnumerator FadeProgressBar()
         {
-            if (fadeIn)
+            if (turnOn)
             {
                 _progressBarBG.DOFade(1, 0.5f);
                 _progressBarFill.DOFade(1, 0.5f);
@@ -103,7 +114,6 @@ public class Waypoint : MonoBehaviour
                 _progressBarBG.DOFade(0, 0.5f);
                 _progressBarFill.DOFade(0, 0.5f);
                 yield return new WaitForSeconds(0.5f);
-                _canvas.enabled = fadeIn;
             }
         }
     }
@@ -111,9 +121,16 @@ public class Waypoint : MonoBehaviour
     private IEnumerator IncrementProgressBar()
     {
         _progressBar.value = Mathf.Clamp(_progressBar.value + _progressIncrementAmount, 0f, 1f);
-        Debug.Log($"Value is: {_progressBar.value}");
-        _onCD = true;
+        _onIncrementCD = true;
         yield return _cooldown;
-        _onCD = false;
+        _onIncrementCD = false;
+    }
+
+    private IEnumerator DecrementProgressBar()
+    {
+        _progressBar.value = Mathf.Clamp(_progressBar.value - _progressDecrementAmount, 0f, 1f);
+        _onDecrementCD = true;
+        yield return _cooldown;
+        _onDecrementCD = false;
     }
 }
