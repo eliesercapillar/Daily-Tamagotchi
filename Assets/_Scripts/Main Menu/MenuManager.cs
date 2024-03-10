@@ -17,15 +17,17 @@ public class MenuManager : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField] private List<Button> _menuButtons;
+    [SerializeField] private string _playSceneName;
 
-    [Header("Buttons")]
+    [Header("Options UI Elements")]
     [SerializeField] private Image _bgmImage;
     [SerializeField] private Image _bgmButtonImage;
     [SerializeField] private Sprite _bgmButtonOffSprite;
     [SerializeField] private Sprite _bgmButtonOnSprite;
     [SerializeField] private Sprite _bgmUnmutedSprite;
     [SerializeField] private Sprite _bgmMutedSprite;
-    [Space(5)]
+
+    [Header("Instructions UI Elements")]
     [SerializeField] private Image _sfxImage;
     [SerializeField] private Image _sfxButtonImage;
     [SerializeField] private Sprite _sfxButtonOffSprite;
@@ -54,7 +56,7 @@ public class MenuManager : MonoBehaviour
             _blackOutPanel.gameObject.SetActive(true);
             _blackOutPanel.DOFade(1, _fadeTime);
             yield return new WaitForSeconds(_fadeTime);
-            SceneManager.LoadScene("Scene_Game");
+            SceneManager.LoadScene(_playSceneName);
         }
     }
 

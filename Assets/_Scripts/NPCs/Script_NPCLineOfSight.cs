@@ -160,7 +160,7 @@ namespace NPC
         public void ShrinkLOS()
         {
             // TODO: Smooth Shrink == Lerp?
-            if (!_isShrinking) StartCoroutine(Shrink());
+            if (!_isShrinking && !_isExpanding) StartCoroutine(Shrink());
 
             IEnumerator Shrink()
             {
@@ -177,7 +177,7 @@ namespace NPC
         public void ExpandLOS()
         {
             // TODO: Smooth Expand == Lerp?
-            if (!_isExpanding) StartCoroutine(Expand());
+            if (!_isExpanding && !_isShrinking) StartCoroutine(Expand());
 
             IEnumerator Expand()
             {

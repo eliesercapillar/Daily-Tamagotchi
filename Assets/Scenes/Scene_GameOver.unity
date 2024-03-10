@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1835951710}
+  _restartString: Scene_Cutscene
   _imageTransform: {fileID: 1835951709}
   _imageStartPos: {x: 0, y: 0}
   _imageEndPos: {x: 0, y: 200}

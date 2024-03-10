@@ -9,9 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_MainMenu.unity
     guid: 364720801529b374889d93495db66764
   - enabled: 1
-    path: Assets/Scenes/Scene_Game.unity
+    path: Assets/Scenes/Scene_Cutscene.unity
+    guid: c292a2bf769939443ac75df87b0e9423
+  - enabled: 1
+    path: Assets/Scenes/Scene_Game1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Scene_Game2.unity
+    guid: 0f6f7827fc8ec0741a2384ea8d2c771e
+  - enabled: 1
+    path: Assets/Scenes/Scene_Game3.unity
+    guid: 03cba50c61abcef4a9901c3aa1c0e233
+  - enabled: 1
+    path: Assets/Scenes/Scene_Game4.unity
+    guid: 6a35c83dd59296e4db04a37b4b28cdcc
+  - enabled: 1
+    path: Assets/Scenes/Scene_Game5.unity
+    guid: f74641a34f2aea5429b00a195de74b02
   - enabled: 1
     path: Assets/Scenes/Scene_GameOver.unity
     guid: 3c408d6c3829c054fa30e2a2345c17ec
+  - enabled: 1
+    path: Assets/Scenes/Scene_Win.unity
+    guid: 24c0f76b800ae294085f6a4985c516ee
   m_configObjects: {}

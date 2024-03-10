@@ -109,15 +109,9 @@ namespace NPC
             PlayAnimation(behaviour);
 
             _los.ShrinkLOS();
-
-            bool waitForIdle = true;
-            while (waitForIdle)
-            {
-                yield return _idleWaitTime;
-                waitForIdle = false;
-                _isRandomIdling = false;
-            }
+            yield return _idleWaitTime;
             _los.ExpandLOS();
+            _isRandomIdling = false;
         }
 
         public void PlayAnimation(NPCState toState)
@@ -128,24 +122,24 @@ namespace NPC
             _currentState = toState;
         }
 
-        public void InteractAtWaypoint(GameObject waypoint)
+        public IEnumerator InteractAtWaypoint(GameObject waypoint)
         {
             _isInteracting = true;
             _waypointProperties = waypoint.GetComponent<Waypoint>();
 
             PlayWaypointAnimations(_waypointProperties.NPCBehaviour);
-            StartCoroutine(HoldPosition());
             if (_waypointProperties.ShouldInteract)
             {
                 _los.ShrinkLOS();
             }
+            yield return HoldPosition();
 
             IEnumerator HoldPosition()
             {
                 yield return _interactWaitTime;
-                _isInteracting = false;
-                _gameManager.LetNPCWalk(_movementManager);
                 if (_waypointProperties.ShouldInteract) _los.ExpandLOS();
+                _isInteracting = false;
+                //_gameManager.LetNPCWalk(_movementManager);
             }
         }
 

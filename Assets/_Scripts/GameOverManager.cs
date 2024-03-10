@@ -9,6 +9,9 @@ public class GameOverManager : MonoBehaviour
     [Header("Animator")]
     [SerializeField] private Animator _animator;
 
+    [Header("Scene")]
+    [SerializeField] private string _restartString;
+
     [Header("Image")]
     [SerializeField] private RectTransform _imageTransform;
     [SerializeField] private Vector2 _imageStartPos;
@@ -94,7 +97,7 @@ public class GameOverManager : MonoBehaviour
             TweenImage(false);
             yield return PlayRestart();
             yield return FadeToBlack();
-            SceneManager.LoadScene("Scene_Game");
+            SceneManager.LoadScene(_restartString);
         }
     }
 

@@ -7,12 +7,16 @@ using DG.Tweening;
 
 public class Waypoint : MonoBehaviour
 {
+    private SFXManager _sfxManager;
+
     [Header("NPC Settings")]
     [SerializeField] private bool _shouldInteract = false;
     [SerializeField] private NPCState _npcBehaviour;
 
     [Header("Waypoint Properties")]
     [SerializeField] private string _description;
+    [SerializeField] private AudioSource _waypointAudioSource;
+    [SerializeField] private AudioClip _successChime;
 
     [Header("Progress Bar")]
     [SerializeField] private Canvas _canvas;
@@ -40,6 +44,7 @@ public class Waypoint : MonoBehaviour
         _progressBar = _canvas.transform.Find("Slider").GetComponent<Slider>();
         _progressBarBG = _progressBar.transform.Find("Background").GetComponent<Image>();
         _progressBarFill = _progressBar.transform.Find("Fill Area").GetComponentInChildren<Image>();
+        _waypointAudioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -51,6 +56,7 @@ public class Waypoint : MonoBehaviour
         _playerInCollider = false;
         _player = Player.Player._instance;
         _indicatorImg = WaypointIndicator._instance. GetComponent<Image>();
+        _sfxManager = SFXManager._instance;
     }
 
     private void Update()
@@ -62,14 +68,21 @@ public class Waypoint : MonoBehaviour
             if (_player.CurrentWaypoint != this) return;
             if (_onIncrementCD) return;
             StartCoroutine(IncrementProgressBar());
+            if (!_waypointAudioSource.isPlaying) _waypointAudioSource.Play();
             if (_progressBar.value >= 1f) 
             {
+                if (_waypointAudioSource.isPlaying) _waypointAudioSource.Stop();
+                _waypointAudioSource.PlayOneShot(_successChime);
                 _indicatorImg.DOFade(1, 0.5f);
                 TurnOnOffProgressBar(false);
                 _player.InteractAtWaypoint();
             }
         }
-        else if (!_onDecrementCD) StartCoroutine(DecrementProgressBar());
+        else if (!_onDecrementCD) 
+        {   
+            if (_waypointAudioSource.isPlaying) _waypointAudioSource.Pause();
+            StartCoroutine(DecrementProgressBar());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -88,6 +101,7 @@ public class Waypoint : MonoBehaviour
         if (other.tag == "TAG_Player")
         {
             if (_player.CurrentWaypoint != this) return;
+            if (_waypointAudioSource.isPlaying) _waypointAudioSource.Pause();
             _playerInCollider = false;
             _indicatorImg.DOFade(1, 0.5f);
             if (_progressBar.value < 1f) 

@@ -10,6 +10,9 @@ namespace NPC
     public class Script_NPCMoodManager : MonoBehaviour
     {
         private GameManager _gameManager;
+        [Header("Game Over Audio")]
+        [SerializeField] private AudioClip _gameOverAudio;
+        private bool _audioPlayed = false;
 
         [Header("Mood Sprites")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -79,6 +82,8 @@ namespace NPC
             {
                 _spriteRenderer.sprite = _moods[_currentMood - 1];
                 _gameManager.GameOver();
+                if (!_audioPlayed) SFXManager._instance.PlayAudio(_gameOverAudio);
+                _audioPlayed = true;
             }
             else
             {

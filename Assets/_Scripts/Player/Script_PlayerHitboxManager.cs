@@ -24,8 +24,8 @@ namespace Player
         private void Start()
         {
             _currentActiveHitbox = _playerNormalHitbox;
-            _playerNormalHitbox.gameObject.SetActive(true);
-            _playerStrongHitbox.gameObject.SetActive(false);
+            _playerNormalHitbox.gameObject.SetActive(false);
+            _playerStrongHitbox.gameObject.SetActive(true);
             _playerGigaHitbox.gameObject.SetActive(false);
         }
 

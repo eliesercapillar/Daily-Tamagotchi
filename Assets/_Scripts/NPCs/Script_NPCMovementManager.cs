@@ -30,7 +30,7 @@ namespace NPC
         [SerializeField] private GameObject _currentWaypoint;   // The current selected target waypoint to travel to.
         
         // State Flags
-        private bool _waypointReached = true;
+        private bool _waypointReached = false;
         private bool _isMoving = false;
         private bool _isWalkingRight = false;
         private bool _isWalkingUp = false;
@@ -47,7 +47,6 @@ namespace NPC
         private void Start()
         {
             if (_gameManager == null) _gameManager = GameManager._instance;
-            //Debug.Log($"Game Manager is {_gameManager}");
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -57,7 +56,6 @@ namespace NPC
                 Debug.Log("NPC " + gameObject.name + " has REACHEDs waypoint: " + _currentWaypoint.name);
                 _waypointReached = true;
                 _isMoving = false;
-                _animationManager.InteractAtWaypoint(other.gameObject);
             }
         }
 
@@ -67,8 +65,10 @@ namespace NPC
             {
                 if (_waypointReached)
                 {
+                    yield return _animationManager.InteractAtWaypoint(_currentWaypoint);
                     GetNewWaypoint();
                 }
+                else if (_currentWaypoint == null) GetNewWaypoint();
                 yield return TraversePath();
             }
         }

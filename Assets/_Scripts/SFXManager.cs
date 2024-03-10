@@ -10,6 +10,9 @@ public class SFXManager : MonoBehaviour, IAudioManager
     [Header("Components")]
     [SerializeField] private AudioSource _audioSource;
 
+    [Header("Clips")]
+    [SerializeField] private List<AudioClip> _ambientOfficeClips;
+
     private void Awake()
     {
         if (_instance != null)
@@ -19,6 +22,25 @@ public class SFXManager : MonoBehaviour, IAudioManager
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void Update()
+    {
+        if (_audioSource.isPlaying) return;
+        PlayRandomAmbience();
+    }
+
+    public void PlayRandomAmbience()
+    {
+        _audioSource.clip = _ambientOfficeClips.RandomElement();;
+        _audioSource.Play();
+    }
+
+    public void SetAudioAndLoop(AudioClip clip, bool turnOn)
+    {
+        _audioSource.clip = clip;
+        _audioSource.loop = turnOn;
+        _audioSource.Play();
     }
 
     public float GetVolumeLevel()

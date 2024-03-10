@@ -41,13 +41,13 @@ namespace Player
 
         private void Start()
         {
-            _currentState = Transformation.Normal;
+            _currentState = Transformation.Strong;
             _isEnraged = false;
         }
 
         private void Update()
         {
-            HandleRage();
+            //HandleRage();
         }
 
         private void HandleRage()

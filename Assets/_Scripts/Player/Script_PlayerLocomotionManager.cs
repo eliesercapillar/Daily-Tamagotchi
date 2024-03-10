@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 namespace Player
@@ -34,7 +31,6 @@ namespace Player
         // State Flags
         private bool _isMoving;
         private bool _lookingRight;
-        private bool _hasTransformationStarted;
 
         // Setters/Getters
         public bool IsMoving { get { return _isMoving; } }

@@ -7,10 +7,15 @@ using System.Linq;
 using Player;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
+
+    [Header("Scene")]
+    [SerializeField] private string _nextScene;
 
     [Header("NPCs / Enemies / Player")]
     [SerializeField] private Player.Player _player;
@@ -33,11 +38,18 @@ public class GameManager : MonoBehaviour
     [Header("Game Over Settings")]
     [SerializeField] private Script_PlayerLocomotionManager _playerLocomotion;
     [SerializeField] Image _blackOutPanel;
-    private Color _currentPanelColor;
     [SerializeField] private Camera _camera;
     [SerializeField] private float _zoomSpeed;
+    private Color _currentPanelColor;
     private bool _endInProgress;
 
+    [Header("Start Game Settings")]
+    [SerializeField] private Image _startingScreen;
+    [SerializeField] private float _fadeInTime;
+    [SerializeField] private TextMeshProUGUI _dayTextTMP;
+    [SerializeField] private string _dayText;
+    [SerializeField] private float _charPauseTime;
+    [SerializeField] private AudioClip _typingClip;
 
     public Tilemap Tilemap { get { return _unwalkableTilemap; } set { _unwalkableTilemap = value; }}
 
@@ -48,18 +60,19 @@ public class GameManager : MonoBehaviour
         _blackOutPanel.gameObject.SetActive(false);
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         if (_player == null) _player = Player.Player._instance;
         AssignNPCWaypoints();
         AssignPlayerWaypoints();
+        yield return ShowOpening();
         StartNPCBehaviour();
     }
 
-    void Update()
-    {
-        PollForNPCInteractions();
-    }
+    // void Update()
+    // {
+    //     PollForNPCInteractions();
+    // }
 
     private void AssignNPCWaypoints()
     {
@@ -107,29 +120,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LetNPCWalk(Script_NPCMovementManager npc)
+    private void LetNPCWalk(Script_NPCMovementManager npc)
     {
         IEnumerator co = npc.StartPatrolling();
         StartCoroutine(co);
-        _npcCoroutines.Add(npc, co);
+        _npcCoroutines[npc] = co;
     }
 
-    public void StopNPCWalk(Script_NPCMovementManager npc)
-    {
-        StopCoroutine(_npcCoroutines[npc]);
-        _npcCoroutines.Remove(npc);
-    }
+    // private void StopNPCWalk(Script_NPCMovementManager npc)
+    // {
+    //     StopCoroutine(_npcCoroutines[npc]);
+    //     _npcCoroutines.Remove(npc);
+    // }
 
-    private void PollForNPCInteractions()
-    {
-        foreach (Script_NPCMovementManager npc in _npcs)
-        {
-            if (npc.WaypointReached && _npcCoroutines.ContainsKey(npc))
-            {
-                StopNPCWalk(npc);
-            }
-        }
-    }
+    // private void PollForNPCInteractions()
+    // {
+    //     foreach (Script_NPCMovementManager npc in _npcs)
+    //     {
+    //         if (npc.WaypointReached && _npcCoroutines.ContainsKey(npc))
+    //         {
+    //             StopNPCWalk(npc);
+    //         }
+    //     }
+    // }
 
     #region Game Over
     public void GameOver()
@@ -140,13 +153,21 @@ public class GameManager : MonoBehaviour
             _playerLocomotion.HaltVelocity();
             _playerLocomotion.enabled = false;
             HaltAllNPCs();
-            StartCoroutine(EndGame());
+            StartCoroutine(WonGame(false));
         }
     }
 
     public void GameOverSuccess()
     {
         Debug.Log("WOOHOO GAME OVER");
+        if (!_endInProgress)
+        {
+            _endInProgress = true;
+            _playerLocomotion.HaltVelocity();
+            _playerLocomotion.enabled = false;
+            HaltAllNPCs();
+            StartCoroutine(WonGame(true));
+        }
     }
 
     private void HaltAllNPCs()
@@ -157,11 +178,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator EndGame()
+    private IEnumerator WonGame(bool wonGame)
     {
-        yield return ZoomCamera();
-        yield return BlackOutScreen();
-        SceneManager.LoadScene("Scene_GameOver");
+        if (wonGame)
+        {
+            yield return BlackOutScreen();
+            SceneManager.LoadScene(_nextScene);
+        }
+        else
+        {
+            yield return ZoomCamera();
+            yield return BlackOutScreen();
+            SceneManager.LoadScene("Scene_GameOver");
+        }
     }
 
     private IEnumerator ZoomCamera()
@@ -190,4 +219,30 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion Game Over
+
+    private IEnumerator ShowOpening()
+    {
+        _startingScreen.gameObject.SetActive(true);
+        yield return ShowText();
+        _dayTextTMP.DOFade(0, _fadeInTime);
+        _startingScreen.DOFade(0, _fadeInTime);
+        yield return new WaitForSeconds(_fadeInTime);
+        _startingScreen.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ShowText()
+    {
+        string text = "";
+
+        int index = 0;
+        while (text != _dayText)
+        {
+            text += _dayText[index];
+            _dayTextTMP.text = text;
+            index++;
+            SFXManager._instance.PlayAudio(_typingClip);
+            yield return new WaitForSeconds(_charPauseTime);
+        }
+        yield return new WaitForSeconds(1f);
+    }
 }
