@@ -12,10 +12,12 @@ _Steve's goal is to get through the work week without being seen by his coworker
 Try it now on my [_itch.io page!_](https://eliesercapillar.itch.io/)
 
 ## Screenshots
-<img src="./Docs/ss1.png" width= "200"/>
-<img src="./Docs/ss2.png" width= "200"/>
-<img src="./Docs/ss3.png" width= "200"/>
-<img src="./Docs/caught.gif" width= "200"/>
+<p align = "middle">
+    <img src="./Docs/ss1.png" width= "200"/>
+    <img src="./Docs/ss2.png" width= "200"/>
+    <img src="./Docs/ss3.png" width= "200"/>
+    <img src="./Docs/caught.gif" width= "200"/>
+</p>
 
 ## Credits
 - [A Normal Guy That Transforms Into A Super Strong Normal Guy](https://kalann.itch.io/a-normal-guy-that-gets-super-strong-normal-guy) by **Kalann**.
